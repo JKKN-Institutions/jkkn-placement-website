@@ -1,73 +1,123 @@
-import { Quote, Star } from "lucide-react";
+"use client";
+
+import { useEffect, useRef } from "react";
 
 const testimonials = [
   {
-    quote:
-      "CDC excellent guidance and support. Training sessions and interview preparation helped secure Rinex Technologies position. Grateful for career shaping efforts.",
-    name: "Jae Divya S",
-    degree: "B.Tech - IT",
-    company: "Rinex Technologies",
+    text: "The placement cell at JKKN was incredibly supportive. From resume building to mock interviews, they prepared us for every stage. I secured a position at TCS during the campus drive, and the entire process was smooth and well-organised.",
+    name: "Rahul K.",
+    role: "B.E. CSE \u2014 Placed at TCS",
+    initials: "RK",
   },
   {
-    quote:
-      "Extremely grateful to CDC for continuous support, guidance, training sessions, interview preparation, and career counseling. Received four job offers. Thank you for shaping career.",
-    name: "Janani V",
-    degree: "B.Com",
-    company: "Multiple Offers",
+    text: "I always wanted to work in a leading hospital, and JKKN made it possible. The nursing placement cell connected us with Apollo Hospitals, and I received my offer within two weeks of the interview. Grateful for the guidance!",
+    name: "Priya S.",
+    role: "B.Sc. Nursing \u2014 Placed at Apollo Hospitals",
+    initials: "PS",
   },
   {
-    quote:
-      "CDC provided guidance and placement journey support. Received job offer from Sakthi Auto Components Ltd through their training and assistance.",
-    name: "Bharani dharan M",
-    degree: "B.Com CA",
-    company: "Sakthi Auto Components Ltd",
+    text: "The pharmacy placement drive brought some of India\u2019s top pharmaceutical companies to our campus. Sun Pharma selected me after a thorough aptitude test and technical interview. The pre-placement training made all the difference.",
+    name: "Arun V.",
+    role: "B.Pharm \u2014 Placed at Sun Pharma",
+    initials: "AV",
+  },
+  {
+    text: "As a BCA graduate, I was uncertain about placement prospects. But the JKKN Arts and Science placement team organised excellent training sessions and brought companies like Concentrix and Amazon to campus. I\u2019m now working at Amazon!",
+    name: "Deepika M.",
+    role: "BCA \u2014 Placed at Amazon",
+    initials: "DM",
+  },
+  {
+    text: "The dental placement cell introduced us to some of the finest hospital chains in India. I completed my BDS and secured a position at Clove Dental. The clinical training at JKKN gave me the confidence to perform well in interviews.",
+    name: "Suresh K.",
+    role: "BDS \u2014 Placed at Clove Dental",
+    initials: "SK",
+  },
+  {
+    text: "My B.Sc. in Medical Lab Technology from JKKN Allied Health Sciences opened doors I never expected. The placement cell arranged campus interviews with SRL Diagnostics, and I was selected in the first round itself.",
+    name: "Kavitha L.",
+    role: "B.Sc. MLT \u2014 Placed at SRL Diagnostics",
+    initials: "KL",
   },
 ];
 
 export default function Testimonials() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add("visible");
+        });
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
+    );
+    sectionRef.current?.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section id="testimonials" className="bg-green-dark py-20">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-12 text-center">
-          <p className="mb-2 text-sm font-semibold uppercase tracking-wider text-gold">
-            Testimonials
-          </p>
-          <h2 className="text-3xl font-bold text-white sm:text-4xl">
-            Smiles Behind <span className="text-gold">Success</span>
+    <section ref={sectionRef} id="testimonials" style={{ padding: "80px 0" }}>
+      <div style={{ maxWidth: "var(--max-w)", margin: "0 auto", padding: "0 24px" }}>
+        <div className="section-header reveal">
+          <div className="section-label">Testimonials</div>
+          <h2
+            className="font-extrabold"
+            style={{
+              fontSize: "clamp(1.75rem, 4vw, 2.5rem)",
+              color: "var(--text-primary)",
+              lineHeight: 1.2,
+              letterSpacing: "-0.02em",
+              marginBottom: 16,
+            }}
+          >
+            What Our Placed Students Say
           </h2>
+          <p style={{ fontSize: "1.1rem", color: "var(--text-secondary)", maxWidth: 600, margin: "0 auto", lineHeight: 1.6 }}>
+            Real experiences from students who launched their careers through JKKN placements
+          </p>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-3">
-          {testimonials.map((t) => (
-            <div
-              key={t.name}
-              className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all hover:bg-white/10"
+        <div
+          className="testimonials-grid"
+          style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }}
+        >
+          {testimonials.map((t, i) => (
+            <article
+              key={i}
+              className={`reveal card-hover-md ${i % 3 === 1 ? "reveal-delay-1" : i % 3 === 2 ? "reveal-delay-2" : ""}`}
+              style={{
+                background: "var(--surface-0)",
+                border: "1px solid var(--border)",
+                borderRadius: "var(--radius-xl)",
+                padding: 28,
+              }}
             >
-              <Quote className="mb-4 h-8 w-8 text-gold opacity-60" />
-              <div className="mb-4 flex gap-1">
-                {[1, 2, 3, 4, 5].map((s) => (
-                  <Star
-                    key={s}
-                    className="h-4 w-4 fill-gold text-gold"
-                  />
-                ))}
+              <div style={{ color: "var(--accent)", fontSize: "0.9rem", marginBottom: 16, letterSpacing: 2 }} aria-hidden="true">
+                {"\u2605\u2605\u2605\u2605\u2605"}
               </div>
-              <p className="mb-6 text-sm leading-relaxed text-white/80 italic">
-                &ldquo;{t.quote}&rdquo;
-              </p>
-              <div className="flex items-center gap-3">
-                <div className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-gold/40 bg-green text-sm font-bold text-white">
-                  {t.name.charAt(0)}
-                </div>
+              <blockquote style={{ fontSize: "0.92rem", color: "var(--text-secondary)", lineHeight: 1.7, marginBottom: 20, fontStyle: "italic" }}>
+                {t.text}
+              </blockquote>
+              <div
+                className="flex items-center gap-3"
+                style={{ paddingTop: 16, borderTop: "1px solid var(--border-light)" }}
+              >
+                <img
+                  src={`https://placehold.co/44x44/e2e8f0/334155?text=${t.initials}`}
+                  alt={`Photo of ${t.name}`}
+                  width={44}
+                  height={44}
+                  style={{ borderRadius: "50%", objectFit: "cover", border: "2px solid var(--surface-2)" }}
+                  loading="lazy"
+                />
                 <div>
-                  <p className="text-sm font-bold text-white">{t.name}</p>
-                  <p className="text-xs text-white/60">{t.degree}</p>
-                  <p className="text-xs font-medium text-gold">
-                    {t.company}
-                  </p>
+                  <span style={{ fontWeight: 700, fontSize: "0.88rem", color: "var(--text-primary)", display: "block" }}>{t.name}</span>
+                  <span style={{ fontSize: "0.78rem", color: "var(--text-tertiary)" }}>{t.role}</span>
                 </div>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </div>

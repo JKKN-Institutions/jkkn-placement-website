@@ -2,35 +2,42 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Menu, X, ChevronDown, Phone, Mail } from "lucide-react";
 
 const navLinks = [
-  { label: "Home", href: "#" },
+  { label: "Home", href: "/" },
   {
     label: "About",
-    href: "#about",
+    href: "/about",
     dropdown: [
-      { label: "CDC", href: "#about" },
-      { label: "Managing Director", href: "#team" },
+      { label: "About Us", href: "/about" },
+      { label: "Our Faculty", href: "/about#faculty" },
     ],
   },
   {
-    label: "CDC Process",
-    href: "#training",
+    label: "Colleges",
+    href: "/colleges",
+  },
+  {
+    label: "Placements",
+    href: "/placements",
     dropdown: [
-      { label: "Placement Process", href: "#training" },
-      { label: "Golden Hours Training", href: "#training" },
-      { label: "Training Highlights", href: "#training" },
-      { label: "Statistics", href: "#recruitment" },
+      { label: "JKKN Dental College & Hospital", href: "/placements/dental" },
+      { label: "JKKN College of Pharmacy", href: "/placements/pharmacy" },
+      { label: "JKKN College of Engineering", href: "/placements/engineering" },
+      { label: "JKKN College of Nursing", href: "/placements/nursing" },
+      { label: "JKKN College of Allied Health Sciences", href: "/placements/allied-health" },
+      { label: "JKKN College of Arts and Science", href: "/placements/arts-science" },
     ],
   },
-  { label: "Our Recruiters", href: "#recruitment" },
+  { label: "Our Recruiters", href: "/recruiters" },
   {
-    label: "Others",
+    label: "More",
     href: "#",
     dropdown: [
-      { label: "Events", href: "#gallery" },
-      { label: "Gallery", href: "#gallery" },
+      { label: "Testimonials", href: "/testimonials" },
+      { label: "FAQ", href: "/faq" },
     ],
   },
 ];
@@ -59,25 +66,21 @@ export default function Navbar() {
       </div>
 
       {/* Main nav */}
-      <div className="bg-white/95 shadow-md backdrop-blur-sm">
+      <div className="bg-white shadow-md">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex h-16 items-center justify-between">
+          <div className="flex h-20 items-center justify-between">
             {/* Logo */}
-            <a href="#" className="flex items-center gap-3">
-              <Image
-                src="https://pmqodbfhsejbvfbmsfeq.supabase.co/storage/v1/object/public/cms-media/general/d3d124dc-fd80-4d7d-939b-2139a9d7de93.svg"
-                alt="JKKN Logo"
-                width={44}
-                height={44}
-                className="h-11 w-auto"
-              />
-              <div className="hidden sm:block">
-                <p className="text-sm font-bold text-heading">JKKN</p>
-                <p className="text-[11px] text-body">
-                  Career Development Center
-                </p>
+            <Link href="/" className="flex items-center gap-3">
+              <div className="relative h-20 w-20 shrink-0 overflow-hidden translate-y-2">
+                <Image
+                  src="https://pmqodbfhsejbvfbmsfeq.supabase.co/storage/v1/object/public/cms-media/general/d3d124dc-fd80-4d7d-939b-2139a9d7de93.svg"
+                  alt="JKKN Logo"
+                  width={44}
+                  height={44}
+                  className="h-full w-full object-contain"
+                />
               </div>
-            </a>
+            </Link>
 
             {/* Desktop Nav */}
             <div className="hidden items-center gap-0.5 lg:flex">
@@ -90,23 +93,23 @@ export default function Navbar() {
                   }
                   onMouseLeave={() => setOpenDropdown(null)}
                 >
-                  <a
+                  <Link
                     href={link.href}
                     className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-heading transition-colors hover:text-green"
                   >
                     {link.label}
                     {link.dropdown && <ChevronDown className="h-3.5 w-3.5" />}
-                  </a>
+                  </Link>
                   {link.dropdown && openDropdown === link.label && (
                     <div className="absolute left-0 top-full min-w-[200px] rounded-md border border-gray-100 bg-white py-1 shadow-xl">
                       {link.dropdown.map((item) => (
-                        <a
+                        <Link
                           key={item.label}
                           href={item.href}
                           className="block px-4 py-2.5 text-sm text-body transition-colors hover:bg-green/5 hover:text-green"
                         >
                           {item.label}
-                        </a>
+                        </Link>
                       ))}
                     </div>
                   )}
@@ -116,12 +119,12 @@ export default function Navbar() {
 
             {/* Contact CTA + Mobile */}
             <div className="flex items-center gap-3">
-              <a
-                href="#footer"
+              <Link
+                href="/contact"
                 className="hidden rounded-md bg-green px-5 py-2.5 text-sm font-semibold text-white transition-all hover:bg-green-light sm:block"
               >
                 Contact Us
-              </a>
+              </Link>
               <button
                 className="rounded-md p-2 text-heading lg:hidden"
                 onClick={() => setMobileOpen(!mobileOpen)}
@@ -140,32 +143,32 @@ export default function Navbar() {
           <div className="space-y-1 px-4 py-3">
             {navLinks.map((link) => (
               <div key={link.label}>
-                <a
+                <Link
                   href={link.href}
                   className="block rounded-md px-3 py-2 text-sm font-medium text-heading hover:bg-green/5 hover:text-green"
                   onClick={() => !link.dropdown && setMobileOpen(false)}
                 >
                   {link.label}
-                </a>
+                </Link>
                 {link.dropdown?.map((item) => (
-                  <a
+                  <Link
                     key={item.label}
                     href={item.href}
                     className="block px-7 py-2 text-sm text-body hover:text-green"
                     onClick={() => setMobileOpen(false)}
                   >
                     {item.label}
-                  </a>
+                  </Link>
                 ))}
               </div>
             ))}
-            <a
-              href="#footer"
+            <Link
+              href="/contact"
               className="mt-3 block rounded-md bg-green py-2.5 text-center text-sm font-semibold text-white"
               onClick={() => setMobileOpen(false)}
             >
               Contact Us
-            </a>
+            </Link>
           </div>
         </div>
       )}

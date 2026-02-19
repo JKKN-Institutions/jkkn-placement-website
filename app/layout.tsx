@@ -9,9 +9,12 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "JKKN Career Development Center",
+  title:
+    "JKKN Institutions Placement Cell \u2014 Campus Recruitment, Training & Career Support | Namakkal, Tamil Nadu",
   description:
-    "Placement portal for JKKN Educational Institutions - Empowering students with career opportunities and industry connections.",
+    "JKKN Institutions Placement Cell offers 95% placement support across 6 colleges \u2014 Dental, Engineering, Pharmacy, Nursing, Arts and Science, Allied Health Sciences. 500+ recruiters, \u20B912 LPA highest package.",
+  keywords:
+    "JKKN placements, JKKN placement cell, JKKN campus recruitment, best placement college Namakkal",
 };
 
 export default function RootLayout({

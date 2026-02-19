@@ -1,70 +1,101 @@
-import { BookOpen, Users, Award, TrendingUp } from "lucide-react";
+"use client";
 
-const stats = [
-  { icon: Users, value: "5000+", label: "Students Placed" },
-  { icon: Award, value: "200+", label: "Recruiters" },
-  { icon: TrendingUp, value: "95%", label: "Placement Rate" },
-  { icon: BookOpen, value: "50+", label: "Training Programs" },
-];
+import { useEffect, useRef } from "react";
 
 export default function AboutPlacement() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add("visible");
+        });
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
+    );
+    sectionRef.current?.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section id="about" className="bg-white py-20">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid items-center gap-12 lg:grid-cols-2">
-          {/* Text */}
-          <div>
-            <p className="mb-2 text-sm font-semibold uppercase tracking-wider text-gold">
-              About Us
+    <section
+      ref={sectionRef}
+      id="about"
+      style={{ padding: "80px 0" }}
+    >
+      <div style={{ maxWidth: "var(--max-w)", margin: "0 auto", padding: "0 24px" }}>
+        <div className="section-header reveal">
+          <div className="section-label">About Us</div>
+          <h2
+            className="font-extrabold"
+            style={{
+              fontSize: "clamp(1.75rem, 4vw, 2.5rem)",
+              color: "var(--text-primary)",
+              lineHeight: 1.2,
+              letterSpacing: "-0.02em",
+              marginBottom: 16,
+            }}
+          >
+            About the JKKN Placement Cell
+          </h2>
+          <p style={{ fontSize: "1.1rem", color: "var(--text-secondary)", maxWidth: 600, margin: "0 auto", lineHeight: 1.6 }}>
+            Dedicated to bridging the gap between academic excellence and industry-ready careers
+          </p>
+        </div>
+
+        <div
+          className="about-grid"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: 64,
+            alignItems: "center",
+          }}
+        >
+          <div className="reveal">
+            <p style={{ color: "var(--text-secondary)", marginBottom: 16, fontSize: "1.02rem" }}>
+              The Training and Placement Cell at JKKN Institutions serves as the central hub for all placement-related activities across six constituent colleges. Established with the vision of ensuring every student transitions seamlessly from academia to the professional world, the cell coordinates campus recruitment drives, industry partnerships, and career development programmes throughout the academic year.
             </p>
-            <h2 className="mb-6 text-3xl font-bold text-heading sm:text-4xl">
-              About Our <span className="text-green">Placement</span>
-            </h2>
-            <p className="mb-4 leading-relaxed text-body">
-              Dear Students and Recruiters, the Career Development Center (CDC)
-              at JKKN Educational Institutions is dedicated to bridging the gap
-              between academia and industry. We prepare students to meet the
-              demands of the professional world through comprehensive training
-              programs, industry interactions, and placement drives.
-            </p>
-            <p className="mb-8 leading-relaxed text-body">
-              Our commitment extends to ensuring every student is equipped with
-              the necessary skills, confidence, and opportunities to build a
-              successful career. With strong industry partnerships and a proven
-              track record, CDC has been instrumental in shaping the futures of
-              thousands of graduates.
-            </p>
-            <a
-              href="#vision"
-              className="inline-flex items-center gap-2 rounded-md bg-green px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-green-light"
+
+            <h3
+              className="flex items-center gap-2"
+              style={{ fontSize: "1.1rem", fontWeight: 700, color: "var(--text-primary)", margin: "24px 0 8px" }}
             >
-              Learn More
-            </a>
+              <span style={{ width: 3, height: 20, background: "var(--brand)", borderRadius: 2 }} />
+              Our Mission
+            </h3>
+            <p style={{ color: "var(--text-secondary)", marginBottom: 16, fontSize: "1.02rem" }}>
+              To achieve 100% placement assistance for all eligible students by cultivating industry-relevant skills, fostering strong recruiter relationships, and providing personalised career guidance. We work closely with over 500 companies spanning healthcare, information technology, pharmaceuticals, engineering, and education sectors.
+            </p>
+
+            <h3
+              className="flex items-center gap-2"
+              style={{ fontSize: "1.1rem", fontWeight: 700, color: "var(--text-primary)", margin: "24px 0 8px" }}
+            >
+              <span style={{ width: 3, height: 20, background: "var(--brand)", borderRadius: 2 }} />
+              Training &amp; Placement Officer
+            </h3>
+            <p style={{ color: "var(--text-secondary)", fontSize: "1.02rem" }}>
+              The Placement Cell is led by a dedicated Training and Placement Officer (TPO) supported by a team of placement coordinators from each college. Together, they organise pre-placement training sessions, aptitude workshops, mock interviews, and industry interaction programmes.
+            </p>
           </div>
 
-          {/* Image placeholder + stats */}
-          <div className="space-y-6">
-            <div className="flex h-72 items-center justify-center rounded-2xl bg-gradient-to-br from-green/10 to-green/5 border border-green/10">
-              <div className="text-center">
-                <BookOpen className="mx-auto mb-3 h-16 w-16 text-green opacity-40" />
-                <p className="text-sm font-medium text-body opacity-60">
-                  CDC Campus Image
-                </p>
-              </div>
+          <figure className="reveal reveal-delay-2">
+            <div style={{ borderRadius: "var(--radius-xl)", overflow: "hidden", position: "relative" }}>
+              <img
+                src="https://placehold.co/580x435/e2e8f0/334155?text=Placement+Cell+Team"
+                alt="JKKN Placement Cell team during a campus recruitment drive"
+                width={580}
+                height={435}
+                style={{ borderRadius: "var(--radius-xl)", width: "100%", aspectRatio: "4/3", objectFit: "cover" }}
+                loading="lazy"
+              />
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              {stats.map((stat) => (
-                <div
-                  key={stat.label}
-                  className="rounded-xl border border-gray-100 bg-white p-4 text-center shadow-sm transition-all hover:shadow-md"
-                >
-                  <stat.icon className="mx-auto mb-2 h-6 w-6 text-green" />
-                  <p className="text-2xl font-bold text-heading">{stat.value}</p>
-                  <p className="text-xs text-body">{stat.label}</p>
-                </div>
-              ))}
-            </div>
-          </div>
+            <figcaption style={{ textAlign: "center", fontSize: "0.82rem", color: "var(--text-tertiary)", marginTop: 12 }}>
+              JKKN Training &amp; Placement Cell Team
+            </figcaption>
+          </figure>
         </div>
       </div>
     </section>

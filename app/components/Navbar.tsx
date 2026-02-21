@@ -25,13 +25,16 @@ const navLinks = [
     dropdown: [
       { label: "JKKN Dental College & Hospital", href: "/placements/dental" },
       { label: "JKKN College of Pharmacy", href: "/placements/pharmacy" },
-      { label: "JKKN College of Engineering", href: "/placements/engineering" },
       { label: "JKKN College of Nursing", href: "/placements/nursing" },
       { label: "JKKN College of Allied Health Sciences", href: "/placements/allied-health" },
+      { label: "JKKN College of Engineering", href: "/placements/engineering" },
       { label: "JKKN College of Arts and Science", href: "/placements/arts-science" },
     ],
   },
+  { label: "On-Campus Drives", href: "/on-campus-drives" },
+  { label: "Internships", href: "/internships" },
   { label: "Our Recruiters", href: "/recruiters" },
+  { label: "AI Workshop", href: "/ai-workshop" },
   {
     label: "More",
     href: "#",
@@ -67,10 +70,10 @@ export default function Navbar() {
 
       {/* Main nav */}
       <div className="bg-white shadow-md">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto px-4 sm:px-6 lg:px-8" style={{ maxWidth: 1400 }}>
           <div className="flex h-20 items-center justify-between">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-3">
+            <Link href="/" className="flex items-center gap-3 shrink-0">
               <div className="relative h-20 w-20 shrink-0 overflow-hidden translate-y-2">
                 <Image
                   src="https://pmqodbfhsejbvfbmsfeq.supabase.co/storage/v1/object/public/cms-media/general/d3d124dc-fd80-4d7d-939b-2139a9d7de93.svg"
@@ -83,7 +86,7 @@ export default function Navbar() {
             </Link>
 
             {/* Desktop Nav */}
-            <div className="hidden items-center gap-0.5 lg:flex">
+            <div className="hidden items-center lg:flex">
               {navLinks.map((link) => (
                 <div
                   key={link.label}
@@ -95,10 +98,10 @@ export default function Navbar() {
                 >
                   <Link
                     href={link.href}
-                    className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-heading transition-colors hover:text-green"
+                    className="flex items-center gap-0.5 whitespace-nowrap px-2.5 py-2 text-[13px] font-medium text-heading transition-colors hover:text-green"
                   >
                     {link.label}
-                    {link.dropdown && <ChevronDown className="h-3.5 w-3.5" />}
+                    {link.dropdown && <ChevronDown className="h-3 w-3" />}
                   </Link>
                   {link.dropdown && openDropdown === link.label && (
                     <div className="absolute left-0 top-full min-w-[200px] rounded-md border border-gray-100 bg-white py-1 shadow-xl">
@@ -118,7 +121,7 @@ export default function Navbar() {
             </div>
 
             {/* Contact CTA + Mobile */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 shrink-0">
               <Link
                 href="/contact"
                 className="hidden rounded-md bg-green px-5 py-2.5 text-sm font-semibold text-white transition-all hover:bg-green-light sm:block"

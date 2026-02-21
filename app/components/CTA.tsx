@@ -30,7 +30,7 @@ export default function CTA() {
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse 80% 60% at 50% 100%, rgba(11,109,65,0.2) 0%, transparent 60%), radial-gradient(ellipse 60% 40% at 80% 0%, rgba(197,160,89,0.12) 0%, transparent 50%)",
+            "radial-gradient(ellipse 80% 60% at 50% 100%, rgba(11,109,65,0.2) 0%, transparent 60%), radial-gradient(ellipse 60% 40% at 80% 0%, rgba(8,80,50,0.15) 0%, transparent 50%)",
         }}
       />
 
@@ -48,7 +48,7 @@ export default function CTA() {
           className="mx-auto mb-8"
           style={{
             fontSize: "1.05rem",
-            color: "#94a3b8",
+            color: "rgba(255,255,255,0.7)",
             maxWidth: 560,
             lineHeight: 1.6,
           }}
@@ -67,7 +67,7 @@ export default function CTA() {
               borderRadius: "var(--radius-full)",
               padding: "10px 20px",
               fontSize: "0.88rem",
-              color: "#cbd5e1",
+              color: "rgba(255,255,255,0.7)",
             }}
           >
             {"\uD83D\uDCDE"}{" "}
@@ -83,7 +83,7 @@ export default function CTA() {
               borderRadius: "var(--radius-full)",
               padding: "10px 20px",
               fontSize: "0.88rem",
-              color: "#cbd5e1",
+              color: "rgba(255,255,255,0.7)",
             }}
           >
             {"\uD83D\uDCE7"}{" "}
@@ -99,7 +99,7 @@ export default function CTA() {
               borderRadius: "var(--radius-full)",
               padding: "10px 20px",
               fontSize: "0.88rem",
-              color: "#cbd5e1",
+              color: "rgba(255,255,255,0.7)",
             }}
           >
             {"\uD83D\uDCCD"} Komarapalayam, Namakkal, Tamil Nadu

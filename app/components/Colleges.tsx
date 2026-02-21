@@ -17,19 +17,6 @@ const colleges = [
     image: "https://pmqodbfhsejbvfbmsfeq.supabase.co/storage/v1/object/public/cms-media/general/97319b8f-3346-404e-8368-106d8daa7984.jpg",
   },
   {
-    name: "JKKN College of Engineering and Technology",
-    slug: "engineering",
-    programmes: "B.E. / B.Tech (CSE, ECE, EEE, Mechanical, Civil, AI&DS), M.E.",
-    metrics: [
-      { value: "95%", label: "Placement Rate" },
-      { value: "\u20B912 LPA", label: "Highest Package" },
-      { value: "\u20B95.5 LPA", label: "Avg. Package" },
-      { value: "150+", label: "Recruiters" },
-    ],
-    recruiters: "TCS, Infosys, Wipro, Cognizant, HCL Technologies, L&T, Zoho, Accenture",
-    image: "https://pmqodbfhsejbvfbmsfeq.supabase.co/storage/v1/object/public/cms-media/general/40d1dc8e-bbe1-4750-ab02-ea06861bb9c5.jpg",
-  },
-  {
     name: "JKKN College of Pharmacy",
     slug: "pharmacy",
     programmes: "B.Pharm, M.Pharm, Pharm.D, D.Pharm",
@@ -43,7 +30,7 @@ const colleges = [
     image: "https://pmqodbfhsejbvfbmsfeq.supabase.co/storage/v1/object/public/cms-media/general/babdddef-4ba7-4caa-acf2-eda9b4be0199.jpg",
   },
   {
-    name: "Sresakthimayeil Institute of Nursing and Research",
+    name: "JKKN College of Nursing",
     slug: "nursing",
     programmes: "B.Sc. Nursing, M.Sc. Nursing, P.B.B.Sc. Nursing",
     metrics: [
@@ -54,19 +41,6 @@ const colleges = [
     ],
     recruiters: "Apollo Hospitals, MIOT Hospitals, Fortis Healthcare, KIMS, Global Hospitals, Kauvery Hospital",
     image: "https://pmqodbfhsejbvfbmsfeq.supabase.co/storage/v1/object/public/cms-media/general/59457a83-8780-42d0-8351-d4eee877a7a6.jpg",
-  },
-  {
-    name: "JKKN College of Arts and Science",
-    slug: "arts-science",
-    programmes: "B.Sc., B.Com, BBA, BCA, M.Sc., M.Com, MBA, MCA",
-    metrics: [
-      { value: "88%", label: "Placement Rate" },
-      { value: "\u20B98 LPA", label: "Highest Package" },
-      { value: "\u20B93.5 LPA", label: "Avg. Package" },
-      { value: "100+", label: "Recruiters" },
-    ],
-    recruiters: "TCS, Infosys BPO, Concentrix, Amazon, Flipkart, HDFC Bank, ICICI Bank",
-    image: "https://pmqodbfhsejbvfbmsfeq.supabase.co/storage/v1/object/public/cms-media/general/af856eac-ce3b-4437-9562-203201b209d5.jpg",
   },
   {
     name: "JKKN College of Allied Health Sciences",
@@ -80,6 +54,32 @@ const colleges = [
     ],
     recruiters: "Apollo Diagnostics, SRL Diagnostics, Thyrocare, Narayana Health, KIMS, Vijaya Diagnostic Centre",
     image: "https://pmqodbfhsejbvfbmsfeq.supabase.co/storage/v1/object/public/cms-media/general/0a7ec366-6d23-4745-a201-dcd771b9f47d.jpg",
+  },
+  {
+    name: "JKKN College of Engineering",
+    slug: "engineering",
+    programmes: "B.E. / B.Tech (CSE, ECE, EEE, Mechanical, Civil, AI&DS), M.E.",
+    metrics: [
+      { value: "95%", label: "Placement Rate" },
+      { value: "\u20B912 LPA", label: "Highest Package" },
+      { value: "\u20B95.5 LPA", label: "Avg. Package" },
+      { value: "150+", label: "Recruiters" },
+    ],
+    recruiters: "TCS, Infosys, Wipro, Cognizant, HCL Technologies, L&T, Zoho, Accenture",
+    image: "https://pmqodbfhsejbvfbmsfeq.supabase.co/storage/v1/object/public/cms-media/general/40d1dc8e-bbe1-4750-ab02-ea06861bb9c5.jpg",
+  },
+  {
+    name: "JKKN College of Arts and Science",
+    slug: "arts-science",
+    programmes: "B.Sc., B.Com, BBA, BCA, M.Sc., M.Com, MBA, MCA",
+    metrics: [
+      { value: "88%", label: "Placement Rate" },
+      { value: "\u20B98 LPA", label: "Highest Package" },
+      { value: "\u20B93.5 LPA", label: "Avg. Package" },
+      { value: "100+", label: "Recruiters" },
+    ],
+    recruiters: "TCS, Infosys BPO, Concentrix, Amazon, Flipkart, HDFC Bank, ICICI Bank",
+    image: "https://pmqodbfhsejbvfbmsfeq.supabase.co/storage/v1/object/public/cms-media/general/af856eac-ce3b-4437-9562-203201b209d5.jpg",
   },
 ];
 

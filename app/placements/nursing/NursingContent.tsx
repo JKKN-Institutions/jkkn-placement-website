@@ -89,19 +89,19 @@ const testimonials = [
     initials: "LM",
   },
   {
-    text: "Fortis Healthcare recruited from our campus, and I was selected as an emergency department nurse. The simulation lab training and emergency nursing practical sessions at Sresakthimayeil gave me a real advantage.",
+    text: "Fortis Healthcare recruited from our campus, and I was selected as an emergency department nurse. The simulation lab training and emergency nursing practical sessions at JKKN College of Nursing gave me a real advantage.",
     name: "Dinesh V.",
     role: "B.Sc. Nursing 2024 \u2014 Emergency Nurse, Fortis",
     initials: "DV",
   },
   {
-    text: "The government exam coaching provided by the placement cell helped me crack the AIIMS nursing officer exam. For students aiming for government positions, Sresakthimayeil\u2019s guidance is truly valuable.",
+    text: "The government exam coaching provided by the placement cell helped me crack the AIIMS nursing officer exam. For students aiming for government positions, JKKN College of Nursing\u2019s guidance is truly valuable.",
     name: "Suganya K.",
     role: "B.Sc. Nursing 2023 \u2014 Nursing Officer, AIIMS",
     initials: "SK",
   },
   {
-    text: "My GNM training at Sresakthimayeil gave me strong clinical foundations. I was placed at Kauvery Hospital as a ward nurse and am now pursuing Post Basic B.Sc. Nursing to further advance my career.",
+    text: "My GNM training at JKKN College of Nursing gave me strong clinical foundations. I was placed at Kauvery Hospital as a ward nurse and am now pursuing Post Basic B.Sc. Nursing to further advance my career.",
     name: "Meera J.",
     role: "GNM 2024 \u2014 Ward Nurse, Kauvery Hospital",
     initials: "MJ",
@@ -121,7 +121,7 @@ const faculty = [
   {
     name: "Mrs. T. Deepa",
     designation: "Training & Placement Officer",
-    college: "Sresakthimayeil Institute of Nursing and Research",
+    college: "JKKN College of Nursing",
     qualifications: ["M.Sc. Nursing", "B.Sc. Nursing", "9+ Yrs Exp."],
     badge: "Training & Placement Officer",
     email: "tpo.nursing@jkkn.ac.in",
@@ -131,7 +131,7 @@ const faculty = [
   {
     name: "Mrs. G. Saranya",
     designation: "Clinical Placement Coordinator",
-    college: "Sresakthimayeil Institute of Nursing and Research",
+    college: "JKKN College of Nursing",
     qualifications: ["M.Sc. Nursing (Med-Surg)", "B.Sc. Nursing", "7+ Yrs Exp."],
     badge: "Clinical Placement Coordinator",
     email: "clinical.nursing@jkkn.ac.in",
@@ -141,7 +141,7 @@ const faculty = [
   {
     name: "Mrs. R. Jayanthi",
     designation: "International Placement Advisor",
-    college: "Sresakthimayeil Institute of Nursing and Research",
+    college: "JKKN College of Nursing",
     qualifications: ["M.Sc. Nursing (OBG)", "OET Trainer", "8+ Yrs Exp."],
     badge: "International Placement Advisor",
     email: "international.nursing@jkkn.ac.in",
@@ -152,11 +152,11 @@ const faculty = [
 
 const faqs = [
   {
-    q: "What is the placement rate for B.Sc. Nursing graduates at Sresakthimayeil Institute?",
-    a: "Sresakthimayeil Institute of Nursing and Research maintains a 93% placement rate for B.Sc. Nursing graduates, with students placed at leading multi-speciality hospitals, government hospitals, and international healthcare organisations across India and abroad.",
+    q: "What is the placement rate for B.Sc. Nursing graduates at JKKN College of Nursing Institute?",
+    a: "JKKN College of Nursing maintains a 93% placement rate for B.Sc. Nursing graduates, with students placed at leading multi-speciality hospitals, government hospitals, and international healthcare organisations across India and abroad.",
   },
   {
-    q: "Which hospitals recruit nursing graduates from Sresakthimayeil Institute?",
+    q: "Which hospitals recruit nursing graduates from JKKN College of Nursing Institute?",
     a: "Top recruiters include Apollo Hospitals, Fortis Healthcare, Manipal Hospitals, MIOT Hospitals, Kauvery Hospital, Narayana Health, Max Healthcare, KMCH, Meenakshi Mission Hospital, and international employers like NMC Healthcare (UAE), Saudi German Hospital, Hamad Medical Corporation (Qatar), NHS UK, and Parkway Pantai (Singapore).",
   },
   {
@@ -164,7 +164,7 @@ const faqs = [
     a: "The highest salary package is \u20B97 LPA (inclusive of international placements), with an average package of \u20B93.5 LPA for B.Sc. Nursing graduates in Indian hospitals. International nursing positions in Gulf countries, Singapore, and UK offer significantly higher packages.",
   },
   {
-    q: "What nursing programmes are offered at Sresakthimayeil Institute?",
+    q: "What nursing programmes are offered at JKKN College of Nursing Institute?",
     a: "The institute offers GNM, B.Sc. Nursing, Post Basic B.Sc. Nursing, and M.Sc. Nursing with specialisations in Medical Surgical Nursing, Obstetrics & Gynaecological Nursing, and Child Health Nursing \u2014 all approved by the Indian Nursing Council (INC).",
   },
   {
@@ -290,7 +290,7 @@ export default function NursingContent() {
               <div className="cp-hero__badge">JKKN Nursing Placement Cell</div>
               <h1>Shape Your <span>Nursing Career</span> with Clinical Excellence</h1>
               <p className="cp-hero__tagline">
-                Sresakthimayeil Institute of Nursing and Research prepares B.Sc. Nursing, M.Sc. Nursing, and GNM graduates for successful healthcare careers across India&apos;s top hospitals and international nursing opportunities.
+                JKKN College of Nursing prepares B.Sc. Nursing, M.Sc. Nursing, and GNM graduates for successful healthcare careers across India&apos;s top hospitals and international nursing opportunities.
               </p>
               <div className="cp-hero__actions">
                 <a href="#programmes" className="btn btn-primary">View Programmes &#8595;</a>
@@ -365,7 +365,7 @@ export default function NursingContent() {
             </div>
             <div className="cp-about__grid">
               <div className="cp-about__text reveal">
-                <p>The Placement Cell at Sresakthimayeil Institute of Nursing and Research is dedicated to ensuring every nursing graduate transitions smoothly from academic training to professional healthcare practice. With INC-approved programmes and extensive clinical rotations, our graduates are sought after by hospitals across India.</p>
+                <p>The Placement Cell at JKKN College of Nursing is dedicated to ensuring every nursing graduate transitions smoothly from academic training to professional healthcare practice. With INC-approved programmes and extensive clinical rotations, our graduates are sought after by hospitals across India.</p>
                 <p>Our placement network spans multi-speciality hospitals, government healthcare facilities, community health centres, and international nursing opportunities in Gulf countries, Singapore, UK, and Ireland.</p>
                 <h3>Hospital Placements</h3>
                 <p>B.Sc. Nursing graduates secure staff nurse, ICU nurse, and specialised nursing positions at Apollo, Fortis, Manipal, MIOT, Kauvery, and 100+ other hospitals across Tamil Nadu and India.</p>
@@ -376,9 +376,9 @@ export default function NursingContent() {
               </div>
               <figure className="reveal reveal-delay-2">
                 <div className="cp-about__img-wrap">
-                  <img src="https://placehold.co/600x450/e2e8f0/334155?text=Nursing+Institute" alt="Sresakthimayeil Institute of Nursing and Research campus with clinical training facilities" width={600} height={450} loading="lazy" />
+                  <img src="https://placehold.co/600x450/e2e8f0/334155?text=Nursing+Institute" alt="JKKN College of Nursing campus with clinical training facilities" width={600} height={450} loading="lazy" />
                 </div>
-                <figcaption className="cp-about__img-caption">Sresakthimayeil Institute of Nursing and Research — Clinical training facility</figcaption>
+                <figcaption className="cp-about__img-caption">JKKN College of Nursing — Clinical training facility</figcaption>
               </figure>
             </div>
           </div>
@@ -567,7 +567,7 @@ export default function NursingContent() {
                 Nursing Placement FAQs
               </h2>
               <p style={{ fontSize: "1.1rem", color: "var(--text-secondary)", maxWidth: 600, margin: "0 auto", lineHeight: 1.6 }}>
-                Commonly asked questions about placements at Sresakthimayeil Institute of Nursing and Research
+                Commonly asked questions about placements at JKKN College of Nursing
               </p>
             </div>
             <div className="cp-faq-list reveal">

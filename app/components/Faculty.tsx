@@ -26,7 +26,7 @@ const facultyData = [
   {
     name: "Prof. R. Kumar",
     designation: "Training & Placement Officer",
-    college: "JKKN College of Engineering and Technology",
+    college: "JKKN College of Engineering",
     qualifications: ["M.E.", "B.E.", "12+ Yrs Exp."],
     badge: "TPO \u2014 Engineering",
     email: "tpo.engg@jkkn.ac.in",
@@ -46,7 +46,7 @@ const facultyData = [
   {
     name: "Mrs. T. Deepa",
     designation: "Training & Placement Officer",
-    college: "Sresakthimayeil Institute of Nursing and Research",
+    college: "JKKN College of Nursing",
     qualifications: ["M.Sc. Nursing", "B.Sc. Nursing", "9+ Yrs Exp."],
     badge: "TPO \u2014 Nursing",
     email: "tpo.nursing@jkkn.ac.in",

@@ -122,7 +122,7 @@ const faculty = [
   {
     name: "Prof. R. Kumar",
     designation: "Training & Placement Officer",
-    college: "JKKN College of Engineering and Technology",
+    college: "JKKN College of Engineering",
     qualifications: ["M.E.", "B.E.", "12+ Yrs Exp."],
     badge: "Training & Placement Officer",
     email: "tpo.engg@jkkn.ac.in",
@@ -132,7 +132,7 @@ const faculty = [
   {
     name: "Prof. S. Lakshmi",
     designation: "Placement Coordinator (IT)",
-    college: "JKKN College of Engineering and Technology",
+    college: "JKKN College of Engineering",
     qualifications: ["M.Tech (CSE)", "B.Tech", "9+ Yrs Exp."],
     badge: "Placement Coordinator \u2014 IT",
     email: "placement.it@jkkn.ac.in",
@@ -142,7 +142,7 @@ const faculty = [
   {
     name: "Prof. M. Rajan",
     designation: "Placement Coordinator (Core)",
-    college: "JKKN College of Engineering and Technology",
+    college: "JKKN College of Engineering",
     qualifications: ["M.E. (Mech)", "B.E.", "10+ Yrs Exp."],
     badge: "Placement Coordinator \u2014 Core",
     email: "placement.core@jkkn.ac.in",
@@ -154,10 +154,10 @@ const faculty = [
 const faqs = [
   {
     q: "What is the placement rate for engineering graduates at JKKNCET?",
-    a: "JKKN College of Engineering and Technology maintains a 90% overall placement rate across all branches. CSE and AI&DS branches achieve over 95% placement, with students placed at top IT companies, core engineering firms, and startups.",
+    a: "JKKN College of Engineering maintains a 90% overall placement rate across all branches. CSE and AI&DS branches achieve over 95% placement, with students placed at top IT companies, core engineering firms, and startups.",
   },
   {
-    q: "Which companies recruit from JKKN College of Engineering and Technology?",
+    q: "Which companies recruit from JKKN College of Engineering?",
     a: "Top recruiters include TCS, Infosys, Wipro, Cognizant, HCL Technologies, Accenture, Capgemini, Tech Mahindra, Zoho, Freshworks, L&T, Ashok Leyland, TVS Motor Company, Saint-Gobain, Caterpillar, and 200+ other companies across IT and core engineering sectors.",
   },
   {
@@ -291,7 +291,7 @@ export default function EngineeringContent() {
               <div className="cp-hero__badge">JKKNCET Placement Cell</div>
               <h1>Build Your <span>Engineering Career</span> from Campus to Corporate</h1>
               <p className="cp-hero__tagline">
-                JKKN College of Engineering and Technology connects B.E./B.Tech graduates with 200+ top IT companies, core engineering firms, and startups through a dedicated placement cell and industry-aligned training.
+                JKKN College of Engineering connects B.E./B.Tech graduates with 200+ top IT companies, core engineering firms, and startups through a dedicated placement cell and industry-aligned training.
               </p>
               <div className="cp-hero__actions">
                 <a href="#programmes" className="btn btn-primary">View Programmes &#8595;</a>
@@ -366,7 +366,7 @@ export default function EngineeringContent() {
             </div>
             <div className="cp-about__grid">
               <div className="cp-about__text reveal">
-                <p>The Training &amp; Placement Cell at JKKN College of Engineering and Technology is dedicated to bridging the gap between academic learning and industry requirements. Our comprehensive placement ecosystem supports students from pre-final year through graduation and beyond.</p>
+                <p>The Training &amp; Placement Cell at JKKN College of Engineering is dedicated to bridging the gap between academic learning and industry requirements. Our comprehensive placement ecosystem supports students from pre-final year through graduation and beyond.</p>
                 <p>With AICTE-approved programmes, NBA-accreditation readiness, and a curriculum aligned with industry standards, JKKNCET graduates are recruited by 200+ companies across IT, manufacturing, automotive, and infrastructure sectors.</p>
                 <h3>IT &amp; Software Focus</h3>
                 <p>CSE and AI&amp;DS students receive specialised training in data structures, algorithms, competitive programming, and full-stack development — making them job-ready for top IT companies and product startups.</p>
@@ -377,9 +377,9 @@ export default function EngineeringContent() {
               </div>
               <figure className="reveal reveal-delay-2">
                 <div className="cp-about__img-wrap">
-                  <img src="https://placehold.co/600x450/e2e8f0/334155?text=JKKN+Engineering+Campus" alt="JKKN College of Engineering and Technology campus with modern laboratories and workshops" width={600} height={450} loading="lazy" />
+                  <img src="https://placehold.co/600x450/e2e8f0/334155?text=JKKN+Engineering+Campus" alt="JKKN College of Engineering campus with modern laboratories and workshops" width={600} height={450} loading="lazy" />
                 </div>
-                <figcaption className="cp-about__img-caption">JKKN College of Engineering and Technology — Modern campus with advanced labs</figcaption>
+                <figcaption className="cp-about__img-caption">JKKN College of Engineering — Modern campus with advanced labs</figcaption>
               </figure>
             </div>
           </div>
@@ -568,7 +568,7 @@ export default function EngineeringContent() {
                 Engineering Placement FAQs
               </h2>
               <p style={{ fontSize: "1.1rem", color: "var(--text-secondary)", maxWidth: 600, margin: "0 auto", lineHeight: 1.6 }}>
-                Commonly asked questions about placements at JKKN College of Engineering and Technology
+                Commonly asked questions about placements at JKKN College of Engineering
               </p>
             </div>
             <div className="cp-faq-list reveal">

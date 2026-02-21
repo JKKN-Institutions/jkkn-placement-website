@@ -1,46 +1,52 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fbfbee;
-  --foreground: #171717;
+  --background: #F9F7F2;
+  --foreground: #111827;
   --green: #0b6d41;
   --green-light: #0f8f56;
-  --green-dark: #032816;
-  --gold: #C5A059;
-  --gold-bright: #ffde59;
-  --cream: #fbfbee;
-  --cream-dark: #f8f9f0;
-  --dark: #0f172a;
-  --body-text: #525252;
-  --heading: #171717;
+  --green-dark: #03311c;
+  --green-darker: #085032;
+  --gold: #7db247;
+  --gold-bright: #7db247;
+  --cream: #F9F7F2;
+  --cream-dark: #f0f7f2;
+  --dark: #03311c;
+  --body-text: #4B5563;
+  --heading: #111827;
 
   /* Design System */
   --brand: var(--green);
   --brand-light: var(--green-light);
   --brand-dark: var(--green-dark);
-  --brand-glow: rgba(11, 109, 65, 0.12);
+  --brand-glow: rgba(11, 109, 65, 0.1);
   --accent: var(--gold);
-  --accent-light: #d4b06a;
-  --text-primary: #171717;
-  --text-secondary: #525252;
-  --text-tertiary: #94a3b8;
+  --accent-light: #65a667;
+  --success: #3EB75E;
+  --text-primary: #111827;
+  --text-secondary: #4B5563;
+  --text-tertiary: #6b7280;
   --surface-0: #ffffff;
-  --surface-1: #f5f5f0;
-  --surface-2: #ededed;
-  --surface-3: #e5e5e5;
-  --border: #e5e5e5;
-  --border-light: #f1f1f1;
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
-  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -2px rgba(0,0,0,0.05);
-  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -4px rgba(0,0,0,0.04);
-  --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.08), 0 8px 10px -6px rgba(0,0,0,0.04);
-  --shadow-glow: 0 0 24px rgba(11,109,65,0.12);
+  --surface-1: #f9fafb;
+  --surface-2: #f0f7f2;
+  --surface-3: #e5e7eb;
+  --border: #e5e7eb;
+  --border-light: #e8e8e8;
+  --shadow: 0 4px 15px rgba(0,0,0,0.08);
+  --shadow-hover: 0 10px 30px rgba(0,0,0,0.15);
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 15px rgba(0,0,0,0.08);
+  --shadow-lg: 0 8px 25px rgba(0,0,0,0.15);
+  --shadow-xl: 0 20px 50px rgba(11,109,65,0.25);
+  --shadow-glow: 0 6px 30px rgba(11,109,65,0.3);
+  --radius: 8px;
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 16px;
   --radius-xl: 20px;
   --radius-full: 9999px;
   --max-w: 1200px;
+  --transition: all 0.3s ease;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
@@ -58,6 +64,7 @@
   --color-dark: var(--dark);
   --color-body: var(--body-text);
   --color-heading: var(--heading);
+  --color-success: var(--success);
   --font-sans: "Poppins", system-ui, sans-serif;
 }
 
@@ -117,11 +124,11 @@ html {
 }
 .btn-accent {
   background: var(--accent); color: #fff;
-  box-shadow: 0 4px 14px rgba(197,160,89,0.3);
+  box-shadow: 0 4px 14px rgba(125,178,71,0.3);
 }
 .btn-accent:hover {
-  background: #b08d47; color: #fff; transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(197,160,89,0.35);
+  background: #65a667; color: #fff; transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(125,178,71,0.35);
 }
 .btn-card {
   width: 100%; background: var(--brand-glow); color: var(--brand);

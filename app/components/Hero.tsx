@@ -36,7 +36,7 @@ export default function Hero() {
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse 80% 60% at 70% 40%, rgba(11,109,65,0.15) 0%, transparent 70%), radial-gradient(ellipse 60% 50% at 20% 80%, rgba(197,160,89,0.1) 0%, transparent 60%)",
+            "radial-gradient(ellipse 80% 60% at 70% 40%, rgba(11,109,65,0.15) 0%, transparent 70%), radial-gradient(ellipse 60% 50% at 20% 80%, rgba(8,80,50,0.15) 0%, transparent 60%)",
         }}
       />
 
@@ -90,7 +90,7 @@ export default function Hero() {
             className="hero-tagline mb-8"
             style={{
               fontSize: "clamp(1rem, 2vw, 1.15rem)",
-              color: "#94a3b8",
+              color: "rgba(255,255,255,0.7)",
               lineHeight: 1.7,
               maxWidth: 520,
             }}

@@ -5,6 +5,7 @@ import { useEffect, useRef } from "react";
 const colleges = [
   {
     name: "JKKN Dental College & Hospital",
+    slug: "dental",
     programmes: "BDS, MDS (Orthodontics, Prosthodontics, Periodontics, Oral Surgery, Conservative Dentistry, Paediatric Dentistry, Oral Pathology, Public Health Dentistry, Oral Medicine)",
     metrics: [
       { value: "92%", label: "Placement Rate" },
@@ -13,22 +14,11 @@ const colleges = [
       { value: "60+", label: "Recruiters" },
     ],
     recruiters: "Apollo Hospitals, Clove Dental, Manipal Hospitals, Fortis Healthcare, Dental Lounge",
-    image: "https://placehold.co/400x180/1e293b/94a3b8?text=JKKN+Dental+College",
-  },
-  {
-    name: "JKKN College of Engineering and Technology",
-    programmes: "B.E. / B.Tech (CSE, ECE, EEE, Mechanical, Civil, AI&DS), M.E.",
-    metrics: [
-      { value: "95%", label: "Placement Rate" },
-      { value: "\u20B912 LPA", label: "Highest Package" },
-      { value: "\u20B95.5 LPA", label: "Avg. Package" },
-      { value: "150+", label: "Recruiters" },
-    ],
-    recruiters: "TCS, Infosys, Wipro, Cognizant, HCL Technologies, L&T, Zoho, Accenture",
-    image: "https://placehold.co/400x180/1e293b/94a3b8?text=JKKN+Engineering",
+    image: "https://pmqodbfhsejbvfbmsfeq.supabase.co/storage/v1/object/public/cms-media/general/97319b8f-3346-404e-8368-106d8daa7984.jpg",
   },
   {
     name: "JKKN College of Pharmacy",
+    slug: "pharmacy",
     programmes: "B.Pharm, M.Pharm, Pharm.D, D.Pharm",
     metrics: [
       { value: "90%", label: "Placement Rate" },
@@ -37,10 +27,11 @@ const colleges = [
       { value: "80+", label: "Recruiters" },
     ],
     recruiters: "Cipla, Sun Pharma, Dr. Reddy\u2019s, Hetero, Lupin, Aurobindo, Biocon",
-    image: "https://placehold.co/400x180/1e293b/94a3b8?text=JKKN+Pharmacy",
+    image: "https://pmqodbfhsejbvfbmsfeq.supabase.co/storage/v1/object/public/cms-media/general/babdddef-4ba7-4caa-acf2-eda9b4be0199.jpg",
   },
   {
-    name: "Sresakthimayeil Institute of Nursing and Research",
+    name: "JKKN College of Nursing",
+    slug: "nursing",
     programmes: "B.Sc. Nursing, M.Sc. Nursing, P.B.B.Sc. Nursing",
     metrics: [
       { value: "93%", label: "Placement Rate" },
@@ -49,22 +40,11 @@ const colleges = [
       { value: "70+", label: "Recruiters" },
     ],
     recruiters: "Apollo Hospitals, MIOT Hospitals, Fortis Healthcare, KIMS, Global Hospitals, Kauvery Hospital",
-    image: "https://placehold.co/400x180/1e293b/94a3b8?text=Nursing+Institute",
-  },
-  {
-    name: "JKKN College of Arts and Science",
-    programmes: "B.Sc., B.Com, BBA, BCA, M.Sc., M.Com, MBA, MCA",
-    metrics: [
-      { value: "88%", label: "Placement Rate" },
-      { value: "\u20B98 LPA", label: "Highest Package" },
-      { value: "\u20B93.5 LPA", label: "Avg. Package" },
-      { value: "100+", label: "Recruiters" },
-    ],
-    recruiters: "TCS, Infosys BPO, Concentrix, Amazon, Flipkart, HDFC Bank, ICICI Bank",
-    image: "https://placehold.co/400x180/1e293b/94a3b8?text=Arts+and+Science",
+    image: "https://pmqodbfhsejbvfbmsfeq.supabase.co/storage/v1/object/public/cms-media/general/59457a83-8780-42d0-8351-d4eee877a7a6.jpg",
   },
   {
     name: "JKKN College of Allied Health Sciences",
+    slug: "allied-health",
     programmes: "B.Sc. (Medical Lab Technology, Radiology, Cardiac Technology, Optometry, Renal Dialysis), M.Sc.",
     metrics: [
       { value: "91%", label: "Placement Rate" },
@@ -73,7 +53,33 @@ const colleges = [
       { value: "65+", label: "Recruiters" },
     ],
     recruiters: "Apollo Diagnostics, SRL Diagnostics, Thyrocare, Narayana Health, KIMS, Vijaya Diagnostic Centre",
-    image: "https://placehold.co/400x180/1e293b/94a3b8?text=Allied+Health+Sciences",
+    image: "https://pmqodbfhsejbvfbmsfeq.supabase.co/storage/v1/object/public/cms-media/general/0a7ec366-6d23-4745-a201-dcd771b9f47d.jpg",
+  },
+  {
+    name: "JKKN College of Engineering",
+    slug: "engineering",
+    programmes: "B.E. / B.Tech (CSE, ECE, EEE, Mechanical, Civil, AI&DS), M.E.",
+    metrics: [
+      { value: "95%", label: "Placement Rate" },
+      { value: "\u20B912 LPA", label: "Highest Package" },
+      { value: "\u20B95.5 LPA", label: "Avg. Package" },
+      { value: "150+", label: "Recruiters" },
+    ],
+    recruiters: "TCS, Infosys, Wipro, Cognizant, HCL Technologies, L&T, Zoho, Accenture",
+    image: "https://pmqodbfhsejbvfbmsfeq.supabase.co/storage/v1/object/public/cms-media/general/40d1dc8e-bbe1-4750-ab02-ea06861bb9c5.jpg",
+  },
+  {
+    name: "JKKN College of Arts and Science",
+    slug: "arts-science",
+    programmes: "B.Sc., B.Com, BBA, BCA, M.Sc., M.Com, MBA, MCA",
+    metrics: [
+      { value: "88%", label: "Placement Rate" },
+      { value: "\u20B98 LPA", label: "Highest Package" },
+      { value: "\u20B93.5 LPA", label: "Avg. Package" },
+      { value: "100+", label: "Recruiters" },
+    ],
+    recruiters: "TCS, Infosys BPO, Concentrix, Amazon, Flipkart, HDFC Bank, ICICI Bank",
+    image: "https://pmqodbfhsejbvfbmsfeq.supabase.co/storage/v1/object/public/cms-media/general/af856eac-ce3b-4437-9562-203201b209d5.jpg",
   },
 ];
 
@@ -174,7 +180,7 @@ export default function Colleges() {
                 <p style={{ fontSize: "0.82rem", color: "var(--text-secondary)", marginBottom: 20, lineHeight: 1.6 }}>
                   <strong style={{ color: "var(--text-primary)", fontWeight: 600 }}>Top Recruiters:</strong> {college.recruiters}
                 </p>
-                <a href="#" className="btn btn-card" style={{ borderRadius: "var(--radius-full)", padding: "12px 20px", fontSize: "0.9rem", marginTop: "auto" }}>
+                <a href={`/placements/${college.slug}`} className="btn btn-card" style={{ borderRadius: "var(--radius-full)", padding: "12px 20px", fontSize: "0.9rem", marginTop: "auto" }}>
                   View Details
                 </a>
               </div>

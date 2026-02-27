@@ -100,7 +100,7 @@ export default function Training() {
           <figure className="reveal reveal-delay-2">
             <div>
               <img
-                src="https://placehold.co/540x600/e2e8f0/334155?text=Training+Session"
+                src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=540&h=600&fit=crop"
                 alt="JKKN students attending a pre-placement training session"
                 width={540}
                 height={600}

@@ -84,7 +84,7 @@ export default function AboutPlacement() {
           <figure className="reveal reveal-delay-2">
             <div style={{ borderRadius: "var(--radius-xl)", overflow: "hidden", position: "relative" }}>
               <img
-                src="https://placehold.co/580x435/e2e8f0/334155?text=Placement+Cell+Team"
+                src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=580&h=435&fit=crop"
                 alt="JKKN Placement Cell team during a campus recruitment drive"
                 width={580}
                 height={435}

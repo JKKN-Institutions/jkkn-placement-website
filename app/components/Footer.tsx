@@ -7,7 +7,7 @@ const institutions = [
   { label: "JKKN Dental College and Hospital", href: "https://dental.jkkn.ac.in/" },
   { label: "JKKN College of Allied Health Sciences", href: "https://ahs.jkkn.ac.in/" },
   { label: "JKKN College of Pharmacy", href: "https://pharmacy.jkkn.ac.in" },
-  { label: "Sresakthimayeil Institute Of Nursing And Research", href: "https://nursing.sresakthimayeil.jkkn.ac.in/" },
+  { label: "JKKN College of Nursing", href: "https://nursing.sresakthimayeil.jkkn.ac.in/" },
   { label: "JKKN College of Education", href: "https://edu.jkkn.ac.in/" },
   { label: "JKKN College of Arts and Science", href: "https://cas.jkkn.ac.in/" },
   { label: "JKKN College of Engineering", href: "https://engg.jkkn.ac.in/" },
@@ -65,7 +65,7 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer id="footer" style={{ background: "#032816" }} className="text-white">
+    <footer id="footer" style={{ background: "#03311c" }} className="text-white">
       {/* Main footer */}
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-[1fr_1fr_1fr]">

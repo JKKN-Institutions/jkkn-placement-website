@@ -1,0 +1,43 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:placements.jkkn.ac.in)",
+      "Bash(npm install:*)",
+      "Bash(npx next build)",
+      "Bash(npx next dev)",
+      "Bash(curl:*)",
+      "Bash(curl.exe:*)",
+      "Bash(powershell -Command \"Invoke-WebRequest -Uri ''https://placements.jkkn.ac.in'' -UseBasicParsing | Select-Object -ExpandProperty Content\")",
+      "Bash(powershell.exe -Command \"Invoke-WebRequest -Uri ''https://placements.jkkn.ac.in'' -UseBasicParsing | Select-Object -ExpandProperty Content\")",
+      "Bash(powershell.exe -Command \"Write-Output ''hello''\")",
+      "Bash(powershell.exe -Command \"[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; \\(Invoke-WebRequest -Uri ''https://placements.jkkn.ac.in'' -UseBasicParsing\\).Content\")",
+      "Bash(powershell.exe -Command \"[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; try { \\(Invoke-WebRequest -Uri ''https://placements.jkkn.ac.in'' -UseBasicParsing\\).Content.Substring\\(0,500\\) } catch { Write-Output $_Exception.Message }\")",
+      "Bash(powershell.exe -Command \"[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; try { \\(Invoke-WebRequest -Uri ''https://placements.jkkn.ac.in'' -UseBasicParsing\\).Content.Substring\\(0,3000\\) } catch { Write-Output $_Exception.Message }\")",
+      "Bash(powershell.exe -Command \"[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; $c = \\(Invoke-WebRequest -Uri ''https://placements.jkkn.ac.in'' -UseBasicParsing\\).Content; $c.Substring\\(3000, [Math]::Min\\(5000, $c.Length - 3000\\)\\)\")",
+      "Bash(powershell.exe -File:*)",
+      "WebFetch(domain:jkkn.ac.in)",
+      "Bash(npx next dev -p 3001)",
+      "Bash(npm run dev:*)",
+      "Bash(where:*)",
+      "Bash(echo:*)",
+      "Bash(git init:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git config:*)",
+      "Bash(git stash:*)",
+      "Bash(git checkout:*)",
+      "Bash(netstat:*)",
+      "Bash(timeout 10 bash -c 'while ! curl -s http://localhost:3000/ > /dev/null 2>&1; do sleep 1; done')",
+      "Bash(taskkill:*)",
+      "WebFetch(domain:www.jkkn.ac.in)",
+      "WebSearch",
+      "WebFetch(domain:web.archive.org)",
+      "WebFetch(domain:school.jkkn.ac.in)",
+      "Bash(git status:*)",
+      "Bash(start:*)",
+      "WebFetch(domain:localhost)",
+      "Bash(tail:*)",
+      "Bash(head:*)"
+    ]
+  }
+}

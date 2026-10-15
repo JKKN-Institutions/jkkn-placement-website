@@ -49,6 +49,16 @@
   --transition: all 0.3s ease;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Placement Report (homepage) — main-site brand, jkkn.ac.in */
+  --report-paper: #fbfbee;
+  --report-ink: #032816;
+  --report-ink-soft: #3d5a4a;
+  --report-field: #0b6d41;
+  --report-field-deep: #085032;
+  --report-tint: #e8f5ee;
+  --report-accent: #ffde59;
+  --report-margin: clamp(16px, 2.2vw, 32px);
 }
 
 @theme inline {
@@ -65,6 +75,13 @@
   --color-body: var(--body-text);
   --color-heading: var(--heading);
   --color-success: var(--success);
+  --color-paper: var(--report-paper);
+  --color-ink: var(--report-ink);
+  --color-ink-soft: var(--report-ink-soft);
+  --color-field: var(--report-field);
+  --color-field-deep: var(--report-field-deep);
+  --color-tint: var(--report-tint);
+  --color-accent-yellow: var(--report-accent);
   --font-sans: "Poppins", system-ui, sans-serif;
 }
 

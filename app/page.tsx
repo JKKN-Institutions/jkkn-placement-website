@@ -2,6 +2,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ReportHero from "./components/home/ReportHero";
 import ReportLedger from "./components/home/ReportLedger";
+import CollegeBand from "./components/home/CollegeBand";
 import "./components/home/report.css";
 
 export default function Home() {
@@ -14,6 +15,7 @@ export default function Home() {
         </noscript>
         <ReportHero />
         <ReportLedger />
+        <CollegeBand />
       </main>
       <Footer />
     </>

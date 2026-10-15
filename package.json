@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test:data": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test \"scripts/*.test.mjs\"",
+    "lint:home": "eslint --no-error-on-unmatched-pattern app/components/home app/page.tsx app/layout.tsx app/components/Navbar.tsx app/components/Footer.tsx lib scripts"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

@@ -23,6 +23,8 @@
 - Images only from `https://pmqodbfhsejbvfbmsfeq.supabase.co` or `public/`. Never `placements.jkkn.ac.in` (Vercel bot challenge → 403).
 - Every animation has a `prefers-reduced-motion: reduce` fallback; no content depends on JS to become visible except CountUp digits (which carry an `sr-only` value).
 - Do not delete old components in `app/components/` — other routes import them.
+- Lint gate: `npm run lint:home` must report zero problems (the repo-wide `npm run lint` already failed before this plan with 286 problems in old files; those are out of scope). `components/react-bits/**` is vendored and ignored by ESLint.
+- React Bits motion components are never used directly in sections: use `HeroName`, `LedgerNumber`, `Reveal` from `app/components/home/motion.tsx` (they render static content under reduced motion).
 
 ## Review Focus
 
@@ -179,7 +181,7 @@ Inside `@theme inline`, before `--font-sans`, add:
 
 - [ ] **Step 8: Verify build and lint**
 
-Run: `npm run lint && npm run build`
+Run: `npm run lint:home && npm run build`
 Expected: both succeed (the homepage is unchanged so far).
 
 - [ ] **Step 9: Commit**
@@ -214,7 +216,12 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 
 - [ ] **Step 1: Add the test script to `package.json`**
 
-In `"scripts"`, add: `"test:data": "node --test \"scripts/*.test.mjs\""`
+In `"scripts"`, add: `"test:data": "node --test \"scripts/*.test.mjs\""`, and `"lint:home": "eslint --no-error-on-unmatched-pattern app/components/home app/page.tsx app/layout.tsx app/components/Navbar.tsx app/components/Footer.tsx lib scripts"`.
+
+In `eslint.config.mjs`, add `"components/react-bits/**",` to the `globalIgnores([...])` list (vendored React Bits code).
+
+Run: `npm run lint:home`
+Expected: no problems reported.
 
 - [ ] **Step 2: Write the failing tests — `scripts/home-data.test.mjs`**
 
@@ -585,7 +592,7 @@ Expected: no errors.
 - [ ] **Step 7: Commit**
 
 ```bash
-git add package.json scripts/home-data.test.mjs app/components/home/data.ts
+git add package.json eslint.config.mjs scripts/home-data.test.mjs app/components/home/data.ts
 git commit -m "feat(home): add Placement Report data module with integrity tests
 
 Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
@@ -596,12 +603,70 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 ### Task 3: Report stylesheet, hero and ledger
 
 **Files:**
-- Create: `app/components/home/report.css`, `app/components/home/ReportHero.tsx`, `app/components/home/ReportLedger.tsx`
+- Create: `app/components/home/motion.tsx`, `app/components/home/report.css`, `app/components/home/ReportHero.tsx`, `app/components/home/ReportLedger.tsx`
 - Modify: `app/page.tsx` (temporarily renders only the new sections done so far, so each task is visible)
 
 **Interfaces:**
-- Consumes: `heroImages`, `figures`, `formatFigure` from `./data`; `SplitText`, `CountUp` from `@/components/react-bits/*`.
-- Produces: CSS classes `report`, `report-x`, `report-grid`, `report-section`, `t-display`, `t-title`, `t-lead`, `t-body`, `t-small`, `tabular`, `grey`, `shutter`, `link-bar`, `press`, `ledger-row`, `ledger-whole`, `ledger-frac`, `ledger-cap`, `college-band`, `band-panel`, `band-label`, `poster-wall`; default exports `ReportHero`, `ReportLedger`.
+- Consumes: `heroImages`, `figures`, `formatFigure` from `./data`; `SplitText`, `CountUp`, `AnimatedContent` from `@/components/react-bits/*` (only inside `motion.tsx`).
+- Produces: CSS classes `report`, `report-x`, `report-grid`, `report-section`, `t-display`, `t-title`, `t-lead`, `t-body`, `t-small`, `tabular`, `grey`, `shutter`, `link-bar`, `press`, `ledger-row`, `ledger-whole`, `ledger-frac`, `ledger-cap`, `college-band`, `band-panel`, `band-label`, `poster-wall`; default exports `ReportHero`, `ReportLedger`; named exports from `./motion`: `useReducedMotion(): boolean`, `HeroName({ text, className })`, `LedgerNumber({ to, separator })`, `Reveal(props: ComponentProps<typeof AnimatedContent>)`.
+
+- [ ] **Step 0: Write `app/components/home/motion.tsx`** (controller ruling: the React Bits components ignore `prefers-reduced-motion`, and AnimatedContent renders `invisible` on the server)
+
+```tsx
+"use client";
+
+import { useSyncExternalStore, type ComponentProps } from "react";
+import SplitText from "@/components/react-bits/SplitText";
+import CountUp from "@/components/react-bits/CountUp";
+import AnimatedContent from "@/components/react-bits/AnimatedContent";
+
+const QUERY = "(prefers-reduced-motion: reduce)";
+
+function subscribe(onChange: () => void) {
+  const media = window.matchMedia(QUERY);
+  media.addEventListener("change", onChange);
+  return () => media.removeEventListener("change", onChange);
+}
+
+// Server snapshot is false so hydration matches; the real value applies right after.
+export function useReducedMotion(): boolean {
+  return useSyncExternalStore(subscribe, () => window.matchMedia(QUERY).matches, () => false);
+}
+
+export function HeroName({ text, className }: { text: string; className?: string }) {
+  const reduce = useReducedMotion();
+  if (reduce) return <span className={className}>{text}</span>;
+  return (
+    <SplitText
+      text={text}
+      tag="span"
+      splitType="chars"
+      delay={70}
+      duration={0.9}
+      from={{ opacity: 0, y: 60 }}
+      to={{ opacity: 1, y: 0 }}
+      textAlign="left"
+      className={className}
+    />
+  );
+}
+
+export function LedgerNumber({ to, separator }: { to: number; separator?: string }) {
+  const reduce = useReducedMotion();
+  if (reduce) return <>{separator ? to.toLocaleString("en-US") : String(to)}</>;
+  return <CountUp to={to} separator={separator ?? ""} duration={1.6} />;
+}
+
+export function Reveal({ children, className, ...rest }: ComponentProps<typeof AnimatedContent>) {
+  const reduce = useReducedMotion();
+  if (reduce) return <div className={className}>{children}</div>;
+  return (
+    <AnimatedContent className={className} {...rest}>
+      {children}
+    </AnimatedContent>
+  );
+}
+```
 
 - [ ] **Step 1: Write `app/components/home/report.css`**
 
@@ -693,8 +758,8 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 ```tsx
 import Image from "next/image";
 import Link from "next/link";
-import SplitText from "@/components/react-bits/SplitText";
 import { heroImages } from "./data";
+import { HeroName } from "./motion";
 
 export default function ReportHero() {
   const { gate, handover } = heroImages;
@@ -703,17 +768,7 @@ export default function ReportHero() {
       <div className="grid gap-2 lg:h-[calc(100svh-112px-16px)] lg:min-h-[640px] lg:grid-cols-2 lg:grid-rows-2">
         <div className="flex min-h-[30svh] flex-col justify-end bg-tint p-6">
           <h1 id="hero-title">
-            <SplitText
-              text="JKKN"
-              tag="span"
-              splitType="chars"
-              delay={70}
-              duration={0.9}
-              from={{ opacity: 0, y: 60 }}
-              to={{ opacity: 1, y: 0 }}
-              textAlign="left"
-              className="t-display block"
-            />
+            <HeroName text="JKKN" className="t-display block" />
             <span className="t-lead mt-3 block">Placement Cell</span>
           </h1>
         </div>
@@ -748,8 +803,8 @@ export default function ReportHero() {
 - [ ] **Step 3: Write `app/components/home/ReportLedger.tsx`**
 
 ```tsx
-import CountUp from "@/components/react-bits/CountUp";
 import { figures, formatFigure } from "./data";
+import { LedgerNumber } from "./motion";
 
 export default function ReportLedger() {
   return (
@@ -763,7 +818,7 @@ export default function ReportLedger() {
           {figures.map((f) => (
             <div key={f.id} className="ledger-row t-display tabular">
               <span className="ledger-whole" aria-hidden="true">
-                <CountUp to={f.whole} separator={f.separator ? "," : ""} duration={1.6} />
+                <LedgerNumber to={f.whole} separator={f.separator ? "," : undefined} />
               </span>
               <span className="ledger-frac" aria-hidden="true">{f.fraction ?? ""}{f.suffix ?? ""}</span>
               <p className="ledger-cap t-body">
@@ -795,6 +850,9 @@ export default function Home() {
     <>
       <Navbar />
       <main className="report" style={{ paddingTop: 112 }}>
+        <noscript>
+          <style>{".report .invisible{visibility:visible!important;opacity:1!important;transform:none!important}"}</style>
+        </noscript>
         <ReportHero />
         <ReportLedger />
       </main>
@@ -806,13 +864,13 @@ export default function Home() {
 
 - [ ] **Step 5: Verify**
 
-Run: `npm run lint && npm run build`
+Run: `npm run lint:home && npm run build`
 Expected: success. Then `npm run dev` and open `http://localhost:3000`: the board fills the first screen at 1440px (name tile, greyscale gate photo opening like a shutter, greyscale handover photo, green and yellow tiles); figures count up once and sit aligned on the decimal point; at 390px the board stacks into one column with no horizontal scroll.
 
 - [ ] **Step 6: Commit**
 
 ```bash
-git add app/components/home/report.css app/components/home/ReportHero.tsx app/components/home/ReportLedger.tsx app/page.tsx
+git add app/components/home/motion.tsx app/components/home/report.css app/components/home/ReportHero.tsx app/components/home/ReportLedger.tsx app/page.tsx
 git commit -m "feat(home): hero board and decimal-aligned figures ledger
 
 Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
@@ -827,7 +885,7 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 - Modify: `app/page.tsx` (add `<CollegeBand />` after `<ReportLedger />` with its import)
 
 **Interfaces:**
-- Consumes: `colleges`, `CollegeSlug` from `./data`; `AnimatedContent`; CSS `college-band`, `band-panel`, `band-label`.
+- Consumes: `colleges`, `CollegeSlug` from `./data`; `Reveal` from `./motion`; CSS `college-band`, `band-panel`, `band-label`.
 - Produces: default export `CollegeBand` (client component).
 
 - [ ] **Step 1: Write `app/components/home/CollegeBand.tsx`**
@@ -838,8 +896,8 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 import { useState, type CSSProperties } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import AnimatedContent from "@/components/react-bits/AnimatedContent";
 import { colleges, type CollegeSlug } from "./data";
+import { Reveal } from "./motion";
 
 export default function CollegeBand() {
   const [active, setActive] = useState<CollegeSlug>(colleges[0].slug);
@@ -878,7 +936,7 @@ export default function CollegeBand() {
             Read the {college.short} placement page
           </Link>
         </div>
-        <AnimatedContent key={college.slug} distance={24} duration={0.5} initialOpacity={0} threshold={0}>
+        <Reveal key={college.slug} distance={24} duration={0.5} initialOpacity={0} threshold={0}>
           <dl className="t-body col-span-12 grid gap-8 lg:col-span-6 lg:col-start-7">
             <div>
               <dt className="text-ink-soft">Programmes</dt>
@@ -889,14 +947,14 @@ export default function CollegeBand() {
               <dd className="mt-2">{college.recruiters.join(", ")}</dd>
             </div>
           </dl>
-        </AnimatedContent>
+        </Reveal>
       </div>
     </section>
   );
 }
 ```
 
-Note: `AnimatedContent` renders a wrapper `div`, so the grid placement classes go on that wrapper if it accepts `className`; if it does not, wrap it: `<div className="col-span-12 lg:col-span-6 lg:col-start-7"><AnimatedContent …><dl className="t-body grid gap-8">…</dl></AnimatedContent></div>`. Use whichever keeps the `dl` in columns 7–12.
+Note: `Reveal` (AnimatedContent) renders a wrapper `div` and accepts `className`, so put the grid placement classes on it — `<Reveal key={college.slug} className="col-span-12 lg:col-span-6 lg:col-start-7" …><dl className="t-body grid gap-8">…</dl></Reveal>` — rather than inside, so the `dl` sits in columns 7–12.
 
 - [ ] **Step 2: Add it to `app/page.tsx`**
 
@@ -904,7 +962,7 @@ Add `import CollegeBand from "./components/home/CollegeBand";` and render `<Coll
 
 - [ ] **Step 3: Verify build**
 
-Run: `npm run lint && npm run build`
+Run: `npm run lint:home && npm run build`
 Expected: success.
 
 - [ ] **Step 4: Verify behaviour in the browser**
@@ -933,7 +991,7 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 - Modify: `app/page.tsx` (render both after `<CollegeBand />`, in that order, with imports)
 
 **Interfaces:**
-- Consumes: `recruiterLogos`, `sectors`, `processSteps` from `./data`; `LogoLoop`, `AnimatedContent`.
+- Consumes: `recruiterLogos`, `sectors`, `processSteps` from `./data`; `LogoLoop`; `Reveal` from `./motion`.
 - Produces: default exports `RecruiterSheet`, `ProcessStair`.
 
 - [ ] **Step 1: Write `app/components/home/RecruiterSheet.tsx`**
@@ -986,8 +1044,8 @@ export default function RecruiterSheet() {
 - [ ] **Step 2: Write `app/components/home/ProcessStair.tsx`**
 
 ```tsx
-import AnimatedContent from "@/components/react-bits/AnimatedContent";
 import { processSteps } from "./data";
+import { Reveal } from "./motion";
 
 // Literal class names so Tailwind generates them.
 const STAIR = [
@@ -1005,10 +1063,10 @@ export default function ProcessStair() {
       <ol className="report-x report-grid gap-y-14">
         {processSteps.map((s, i) => (
           <li key={s.line} className={`col-span-12 ${STAIR[i]}`}>
-            <AnimatedContent distance={24} duration={0.7} delay={i * 0.08} initialOpacity={0}>
+            <Reveal distance={24} duration={0.7} delay={i * 0.08} initialOpacity={0}>
               <h3 className={`t-title ${i === last ? "text-accent-yellow" : ""}`}>{s.line}</h3>
               <p className="t-body mt-3 max-w-[34ch]">{s.detail}</p>
-            </AnimatedContent>
+            </Reveal>
           </li>
         ))}
       </ol>
@@ -1021,7 +1079,7 @@ export default function ProcessStair() {
 
 - [ ] **Step 4: Verify**
 
-Run: `npm run lint && npm run build` → success. In `npm run dev`: logos scroll slowly on a white strip and pause on hover; the sector table sits in the right five columns; the green section shows four lines stepping right, the last in yellow. At 390px the headline "500+ recruiters, / six fields of work" stays on two lines and the staircase indents by 6vw per step.
+Run: `npm run lint:home && npm run build` → success. In `npm run dev`: logos scroll slowly on a white strip and pause on hover; the sector table sits in the right five columns; the green section shows four lines stepping right, the last in yellow. At 390px the headline "500+ recruiters, / six fields of work" stays on two lines and the staircase indents by 6vw per step.
 
 - [ ] **Step 5: Commit**
 
@@ -1135,7 +1193,7 @@ export default function PosterWall() {
 
 - [ ] **Step 4: Verify**
 
-Run: `npm run test:data && npm run lint && npm run build` → success. In `npm run dev`: the table lists Sakthi 93, Pronoia 42, Foxconn 30, Omega 14 with alternate tinted rows and no lines; the note says 179 offers; 22 posters fill 4 columns at 1440px, 3 at 768px, 2 at 390px; each opens full size in a new tab.
+Run: `npm run test:data && npm run lint:home && npm run build` → success. In `npm run dev`: the table lists Sakthi 93, Pronoia 42, Foxconn 30, Omega 14 with alternate tinted rows and no lines; the note says 179 offers; 22 posters fill 4 columns at 1440px, 3 at 768px, 2 at 390px; each opens full size in a new tab.
 
 - [ ] **Step 5: Commit**
 
@@ -1251,6 +1309,9 @@ export default function Home() {
     <>
       <Navbar />
       <main className="report" style={{ paddingTop: 112 }}>
+        <noscript>
+          <style>{".report .invisible{visibility:visible!important;opacity:1!important;transform:none!important}"}</style>
+        </noscript>
         <ReportHero />
         <ReportLedger />
         <CollegeBand />
@@ -1277,7 +1338,7 @@ Replace the `description:` value with:
 
 - [ ] **Step 5: Verify**
 
-Run: `npm run test:data && npm run lint && npm run build` → success. In `npm run dev`: every FAQ answer is open beside its question at 1440px and directly beneath it at 390px; the closing strip shows three greyscale college photos, then the green field whose underlined link drifts slightly toward the pointer and goes to `/contact`.
+Run: `npm run test:data && npm run lint:home && npm run build` → success. In `npm run dev`: every FAQ answer is open beside its question at 1440px and directly beneath it at 390px; the closing strip shows three greyscale college photos, then the green field whose underlined link drifts slightly toward the pointer and goes to `/contact`.
 
 - [ ] **Step 6: Commit**
 
@@ -1397,7 +1458,7 @@ export default function Footer() {
 
 - [ ] **Step 3: Verify build and other routes**
 
-Run: `npm run lint && npm run build` → success. In `npm run dev`, open `/`, `/about`, `/placements/dental`, `/on-campus-drives`, `/contact`: the Navbar is a flat cream bar with ink links and a square ink "Contact Us" button, dropdowns still open on hover, content still starts below the bar (112px offset intact), and every page ends with the green footer whose "JKKN" wordmark spans the full width on one line.
+Run: `npm run lint:home && npm run build` → success. In `npm run dev`, open `/`, `/about`, `/placements/dental`, `/on-campus-drives`, `/contact`: the Navbar is a flat cream bar with ink links and a square ink "Contact Us" button, dropdowns still open on hover, content still starts below the bar (112px offset intact), and every page ends with the green footer whose "JKKN" wordmark spans the full width on one line.
 
 - [ ] **Step 4: Stale-copy grep (Review Focus 5)**
 
@@ -1443,7 +1504,7 @@ Read every screenshot in `.taste-skill/inspect/` and critique with `$TASTE/refer
 
 - [ ] **Step 5: Final checks**
 
-Run: `npm run test:data && npm run lint && npm run build`
+Run: `npm run test:data && npm run lint:home && npm run build`
 Expected: all pass.
 
 - [ ] **Step 6: Commit**

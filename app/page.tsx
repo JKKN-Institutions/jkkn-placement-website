@@ -3,6 +3,8 @@ import Footer from "./components/Footer";
 import ReportHero from "./components/home/ReportHero";
 import ReportLedger from "./components/home/ReportLedger";
 import CollegeBand from "./components/home/CollegeBand";
+import RecruiterSheet from "./components/home/RecruiterSheet";
+import ProcessStair from "./components/home/ProcessStair";
 import "./components/home/report.css";
 
 export default function Home() {
@@ -16,6 +18,8 @@ export default function Home() {
         <ReportHero />
         <ReportLedger />
         <CollegeBand />
+        <RecruiterSheet />
+        <ProcessStair />
       </main>
       <Footer />
     </>

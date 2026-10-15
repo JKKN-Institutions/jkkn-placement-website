@@ -7,6 +7,8 @@ import RecruiterSheet from "./components/home/RecruiterSheet";
 import ProcessStair from "./components/home/ProcessStair";
 import OffersTable from "./components/home/OffersTable";
 import PosterWall from "./components/home/PosterWall";
+import FaqTable from "./components/home/FaqTable";
+import ClosingField from "./components/home/ClosingField";
 import "./components/home/report.css";
 
 export default function Home() {
@@ -24,6 +26,8 @@ export default function Home() {
         <ProcessStair />
         <OffersTable />
         <PosterWall />
+        <FaqTable />
+        <ClosingField />
       </main>
       <Footer />
     </>

@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   title:
     "JKKN Institutions Placement Cell \u2014 Campus Recruitment, Training & Career Support | Namakkal, Tamil Nadu",
   description:
-    "JKKN Institutions Placement Cell offers 95% placement support across 6 colleges \u2014 Dental, Engineering, Pharmacy, Nursing, Arts and Science, Allied Health Sciences. 500+ recruiters, \u20B912 LPA highest package.",
+    "JKKN Institutions Placement Cell: a 92% placement rate across six colleges \u2014 Dental, Pharmacy, Nursing, Allied Health Sciences, Engineering and Technology, Arts and Science. 500+ recruiters, \u20B98.5 LPA highest package.",
   keywords:
     "JKKN placements, JKKN placement cell, JKKN campus recruitment, best placement college Namakkal",
 };

@@ -130,7 +130,7 @@ export default function Navbar() {
                 Contact Us
               </Link>
               <button
-                className="rounded-md p-2 text-ink lg:hidden"
+                className="p-2 text-ink lg:hidden"
                 onClick={() => setMobileOpen(!mobileOpen)}
                 aria-label="Toggle menu"
               >
@@ -149,7 +149,7 @@ export default function Navbar() {
               <div key={link.label}>
                 <Link
                   href={link.href}
-                  className="block rounded-md px-3 py-2 text-base font-medium text-ink hover:bg-tint hover:text-field"
+                  className="block px-3 py-2 text-base font-medium text-ink hover:bg-tint hover:text-field"
                   onClick={() => !link.dropdown && setMobileOpen(false)}
                 >
                   {link.label}

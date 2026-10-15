@@ -5,6 +5,8 @@ import ReportLedger from "./components/home/ReportLedger";
 import CollegeBand from "./components/home/CollegeBand";
 import RecruiterSheet from "./components/home/RecruiterSheet";
 import ProcessStair from "./components/home/ProcessStair";
+import OffersTable from "./components/home/OffersTable";
+import PosterWall from "./components/home/PosterWall";
 import "./components/home/report.css";
 
 export default function Home() {
@@ -20,6 +22,8 @@ export default function Home() {
         <CollegeBand />
         <RecruiterSheet />
         <ProcessStair />
+        <OffersTable />
+        <PosterWall />
       </main>
       <Footer />
     </>

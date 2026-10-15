@@ -12,7 +12,7 @@ const navLinks = [
     href: "/about",
     dropdown: [
       { label: "About Us", href: "/about" },
-      { label: "Our Faculty", href: "/about#faculty" },
+      { label: "Our Learning Facilitators", href: "/about#faculty" },
     ],
   },
   {
@@ -23,12 +23,12 @@ const navLinks = [
     label: "Placements",
     href: "/placements",
     dropdown: [
-      { label: "JKKN Dental College & Hospital", href: "/placements/dental" },
+      { label: "JKKN Dental College and Hospital", href: "/placements/dental" },
       { label: "JKKN College of Pharmacy", href: "/placements/pharmacy" },
       { label: "JKKN College of Nursing", href: "/placements/nursing" },
       { label: "JKKN College of Allied Health Sciences", href: "/placements/allied-health" },
-      { label: "JKKN College of Engineering", href: "/placements/engineering" },
-      { label: "JKKN College of Arts and Science", href: "/placements/arts-science" },
+      { label: "JKKN College of Engineering and Technology (Autonomous)", href: "/placements/engineering" },
+      { label: "JKKN College of Arts and Science (Autonomous)", href: "/placements/arts-science" },
     ],
   },
   { label: "On-Campus Drives", href: "/on-campus-drives" },
@@ -52,8 +52,8 @@ export default function Navbar() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50">
       {/* Top bar */}
-      <div className="bg-green-dark">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 text-xs text-white/80 sm:px-6 lg:px-8">
+      <div className="bg-field-deep">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 text-xs text-paper sm:px-6 lg:px-8">
           <div className="flex items-center gap-4">
             <span className="flex items-center gap-1">
               <Phone className="h-3 w-3" /> +91-9865910003
@@ -69,7 +69,7 @@ export default function Navbar() {
       </div>
 
       {/* Main nav */}
-      <div className="bg-white shadow-md">
+      <div className="bg-paper">
         <div className="mx-auto px-4 sm:px-6 lg:px-8" style={{ maxWidth: 1400 }}>
           <div className="flex h-20 items-center justify-between">
             {/* Logo */}
@@ -98,18 +98,18 @@ export default function Navbar() {
                 >
                   <Link
                     href={link.href}
-                    className="flex items-center gap-0.5 whitespace-nowrap px-2.5 py-2 text-[13px] font-medium text-heading transition-colors hover:text-green"
+                    className="flex items-center gap-0.5 whitespace-nowrap px-2.5 py-2 text-[13px] font-medium text-ink transition-colors hover:text-field"
                   >
                     {link.label}
                     {link.dropdown && <ChevronDown className="h-3 w-3" />}
                   </Link>
                   {link.dropdown && openDropdown === link.label && (
-                    <div className="absolute left-0 top-full min-w-[200px] rounded-md border border-gray-100 bg-white py-1 shadow-xl">
+                    <div className="absolute left-0 top-full min-w-[320px] bg-paper py-1 shadow-xl">
                       {link.dropdown.map((item) => (
                         <Link
                           key={item.label}
                           href={item.href}
-                          className="block px-4 py-2.5 text-sm text-body transition-colors hover:bg-green/5 hover:text-green"
+                          className="block px-4 py-2.5 text-sm text-ink transition-colors hover:bg-tint hover:text-field"
                         >
                           {item.label}
                         </Link>
@@ -124,12 +124,12 @@ export default function Navbar() {
             <div className="flex items-center gap-3 shrink-0">
               <Link
                 href="/contact"
-                className="hidden rounded-md bg-green px-5 py-2.5 text-sm font-semibold text-white transition-all hover:bg-green-light sm:block"
+                className="hidden bg-ink px-5 py-2.5 text-sm font-semibold text-paper transition-all hover:bg-field sm:block"
               >
                 Contact Us
               </Link>
               <button
-                className="rounded-md p-2 text-heading lg:hidden"
+                className="rounded-md p-2 text-ink lg:hidden"
                 onClick={() => setMobileOpen(!mobileOpen)}
                 aria-label="Toggle menu"
               >
@@ -142,13 +142,13 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="border-t border-gray-100 bg-white lg:hidden">
+        <div className="bg-paper lg:hidden">
           <div className="space-y-1 px-4 py-3">
             {navLinks.map((link) => (
               <div key={link.label}>
                 <Link
                   href={link.href}
-                  className="block rounded-md px-3 py-2 text-sm font-medium text-heading hover:bg-green/5 hover:text-green"
+                  className="block rounded-md px-3 py-2 text-sm font-medium text-ink hover:bg-tint hover:text-field"
                   onClick={() => !link.dropdown && setMobileOpen(false)}
                 >
                   {link.label}
@@ -157,7 +157,7 @@ export default function Navbar() {
                   <Link
                     key={item.label}
                     href={item.href}
-                    className="block px-7 py-2 text-sm text-body hover:text-green"
+                    className="block px-7 py-2 text-sm text-ink hover:bg-tint hover:text-field"
                     onClick={() => setMobileOpen(false)}
                   >
                     {item.label}
@@ -167,7 +167,7 @@ export default function Navbar() {
             ))}
             <Link
               href="/contact"
-              className="mt-3 block rounded-md bg-green py-2.5 text-center text-sm font-semibold text-white"
+              className="mt-3 block bg-ink py-2.5 text-center text-sm font-semibold text-paper hover:bg-field"
               onClick={() => setMobileOpen(false)}
             >
               Contact Us

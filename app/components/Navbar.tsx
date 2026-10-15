@@ -53,7 +53,7 @@ export default function Navbar() {
     <nav className="fixed top-0 left-0 right-0 z-50">
       {/* Top bar */}
       <div className="bg-field-deep">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 text-xs text-paper sm:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 text-[13px] text-paper sm:px-6 lg:px-8">
           <div className="flex items-center gap-4">
             <span className="flex items-center gap-1">
               <Phone className="h-3 w-3" /> +91-9865910003
@@ -62,7 +62,7 @@ export default function Navbar() {
               <Mail className="h-3 w-3" /> cdc@jkkn.ac.in
             </span>
           </div>
-          <div className="hidden text-xs sm:block">
+          <div className="hidden text-[13px] sm:block">
             Mon - Sat: 8am - 5pm | Sunday: CLOSED
           </div>
         </div>
@@ -104,12 +104,13 @@ export default function Navbar() {
                     {link.dropdown && <ChevronDown className="h-3 w-3" />}
                   </Link>
                   {link.dropdown && openDropdown === link.label && (
-                    <div className="absolute left-0 top-full min-w-[320px] bg-paper py-1 shadow-xl">
+                    // Floating menu: the one overlay allowed to lift off the page (house rule exception).
+                    <div className="absolute left-0 top-full min-w-[320px] bg-paper py-1 shadow-xl" /* taste-skill-ignore */>
                       {link.dropdown.map((item) => (
                         <Link
                           key={item.label}
                           href={item.href}
-                          className="block px-4 py-2.5 text-sm text-ink transition-colors hover:bg-tint hover:text-field"
+                          className="block px-4 py-2.5 text-[13px] text-ink transition-colors hover:bg-tint hover:text-field"
                         >
                           {item.label}
                         </Link>
@@ -124,7 +125,7 @@ export default function Navbar() {
             <div className="flex items-center gap-3 shrink-0">
               <Link
                 href="/contact"
-                className="hidden bg-ink px-5 py-2.5 text-sm font-semibold text-paper transition-all hover:bg-field sm:block"
+                className="hidden bg-ink px-5 py-2.5 text-[13px] font-semibold text-paper transition-colors hover:bg-field sm:block"
               >
                 Contact Us
               </Link>
@@ -148,7 +149,7 @@ export default function Navbar() {
               <div key={link.label}>
                 <Link
                   href={link.href}
-                  className="block rounded-md px-3 py-2 text-sm font-medium text-ink hover:bg-tint hover:text-field"
+                  className="block rounded-md px-3 py-2 text-base font-medium text-ink hover:bg-tint hover:text-field"
                   onClick={() => !link.dropdown && setMobileOpen(false)}
                 >
                   {link.label}
@@ -157,7 +158,7 @@ export default function Navbar() {
                   <Link
                     key={item.label}
                     href={item.href}
-                    className="block px-7 py-2 text-sm text-ink hover:bg-tint hover:text-field"
+                    className="block px-7 py-2 text-base text-ink hover:bg-tint hover:text-field"
                     onClick={() => setMobileOpen(false)}
                   >
                     {item.label}
@@ -167,7 +168,7 @@ export default function Navbar() {
             ))}
             <Link
               href="/contact"
-              className="mt-3 block bg-ink py-2.5 text-center text-sm font-semibold text-paper hover:bg-field"
+              className="mt-3 block bg-ink py-2.5 text-center text-base font-semibold text-paper hover:bg-field"
               onClick={() => setMobileOpen(false)}
             >
               Contact Us

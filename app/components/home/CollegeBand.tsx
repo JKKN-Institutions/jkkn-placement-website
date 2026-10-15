@@ -11,7 +11,7 @@ export default function CollegeBand() {
   const college = colleges.find((c) => c.slug === active) ?? colleges[0];
 
   return (
-    <section aria-labelledby="colleges-title" className="pt-[clamp(96px,12vw,200px)]">
+    <section aria-labelledby="colleges-title">
       <div className="report-x report-grid mb-16">
         <h2 id="colleges-title" className="t-title col-span-12 lg:col-span-9 lg:col-start-3">
           Six colleges, one cell
@@ -30,7 +30,7 @@ export default function CollegeBand() {
             className="band-panel"
             style={{ "--grow": c.grow } as CSSProperties}
           >
-            <Image src={c.image} alt="" fill sizes="(min-width: 768px) 40vw, 64vw" className="object-cover" />
+            <Image src={c.image} alt="" fill sizes="(min-width: 1024px) 40vw, 64vw" className="object-cover" />
             <span className="band-label t-body">{c.short}</span>
           </button>
         ))}

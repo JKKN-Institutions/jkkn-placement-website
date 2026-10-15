@@ -32,19 +32,20 @@
 @keyframes shutter-scale { from { transform: scale(1.12); } to { transform: scale(1); } }
 
 /* Ledger: figures aligned on the decimal point. Row font-size = display, so em = figure size. */
+/* The whole-number column is sized for "50,000" so no figure runs into its fraction or suffix. */
 .ledger-row {
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) 1.3em minmax(0, 1fr);
+  grid-template-columns: 3.6em 1.3em minmax(0, 1fr);
   align-items: baseline;
-  column-gap: 0.12em;
   padding-block: 10px;
 }
-.ledger-whole { text-align: right; }
-.ledger-frac { text-align: left; }
-.ledger-cap { align-self: baseline; }
+.ledger-whole { text-align: right; white-space: nowrap; }
+.ledger-frac { text-align: left; white-space: nowrap; }
+/* The caption sits inside the display-sized row: reset the tracking and weight it would inherit. */
+.ledger-cap { align-self: baseline; margin-left: 24px; letter-spacing: 0; font-weight: 400; }
 @media (max-width: 767px) {
-  .ledger-row { grid-template-columns: 52% 1.3em; row-gap: 6px; padding-block: 14px; }
-  .ledger-cap { grid-column: 1 / -1; font-size: 15px; }
+  .ledger-row { row-gap: 6px; padding-block: 14px; }
+  .ledger-cap { grid-column: 1 / -1; margin-left: 0; }
 }
 
 /* College band: six unequal panels; the chosen or hovered one widens. */
@@ -61,7 +62,8 @@
   background: rgb(3 40 22 / 0.78); color: var(--report-paper); text-align: left;
 }
 .band-panel[aria-pressed="true"] .band-label { background: var(--report-paper); color: var(--report-ink); }
-@media (max-width: 767px) {
+/* Below 1024px six side-by-side panels clip their labels, so the band wraps into three rows. */
+@media (max-width: 1023px) {
   .college-band { flex-wrap: wrap; height: 84svh; }
   .band-panel { flex: none; height: 28svh; }
   .band-panel:nth-child(1), .band-panel:nth-child(4), .band-panel:nth-child(5) { width: 64%; }
@@ -69,9 +71,11 @@
 }
 
 /* Poster wall */
-.poster-wall { columns: 4; column-gap: 4px; }
-@media (max-width: 1023px) { .poster-wall { columns: 3; } }
-@media (max-width: 639px) { .poster-wall { columns: 2; } }
+/* Every poster has the same ratio, so a plain grid reads as a sheet with no ragged last row. */
+.poster-wall { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px 4px; }
+.poster-statement { grid-column: span 2; padding: 0 0 24px calc(var(--report-margin) - 12px); }
+@media (max-width: 1023px) { .poster-wall { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 639px) { .poster-wall { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
 @media (prefers-reduced-motion: reduce) {
   .shutter, .shutter img { animation: none; }

@@ -8,19 +8,19 @@ export default function ReportHero() {
   return (
     <section aria-labelledby="hero-title" className="p-2">
       <div className="grid gap-2 lg:h-[calc(100svh-112px-16px)] lg:min-h-[640px] lg:grid-cols-2 lg:grid-rows-2">
-        <div className="flex min-h-[30svh] flex-col justify-end bg-tint p-6">
+        <div className="flex min-h-[18svh] flex-col justify-end bg-tint p-6 sm:min-h-[30svh]">
           <h1 id="hero-title">
             <HeroName text="JKKN" className="t-display block" />
             <span className="t-lead mt-3 block">Placement Cell</span>
           </h1>
         </div>
 
-        <div className="shutter relative aspect-[4/3] overflow-hidden lg:aspect-auto">
+        <div className="shutter relative aspect-[16/9] overflow-hidden sm:aspect-[4/3] lg:aspect-auto">
           <Image src={gate.src} alt={gate.alt} fill priority sizes="(min-width: 1024px) 50vw, 100vw" className="grey object-cover" />
         </div>
 
         <div className="relative hidden overflow-hidden lg:block">
-          <Image src={handover.src} alt={handover.alt} fill sizes="50vw" className="grey object-cover object-top" />
+          <Image src={handover.src} alt={handover.alt} fill sizes="50vw" className="grey scale-[1.03] object-cover object-[50%_45%]" />
         </div>
 
         <div className="grid gap-2 sm:grid-cols-2">
@@ -34,8 +34,8 @@ export default function ReportHero() {
         </div>
       </div>
 
-      <div className="relative mt-2 aspect-square overflow-hidden lg:hidden">
-        <Image src={handover.src} alt={handover.alt} fill sizes="100vw" className="grey object-cover object-top" />
+      <div className="relative mt-2 aspect-[4/3] overflow-hidden lg:hidden">
+        <Image src={handover.src} alt={handover.alt} fill sizes="100vw" className="grey scale-[1.03] object-cover object-[50%_80%]" />
       </div>
     </section>
   );

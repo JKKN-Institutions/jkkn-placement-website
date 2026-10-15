@@ -22,9 +22,9 @@ export default function Footer() {
   return (
     <footer
       id="footer"
-      className="grid min-h-[100svh] grid-rows-[auto_1fr_auto] bg-field-deep px-[var(--report-margin)] pb-5 pt-10 text-paper"
+      className="grid min-h-[100svh] grid-rows-[auto_1fr_auto] bg-field-deep px-[var(--report-margin)] pb-5 pt-10 text-paper [&_a:focus-visible]:outline-[3px] [&_a:focus-visible]:outline-offset-[3px] [&_a:focus-visible]:outline-paper [&_a:focus-visible]:outline-solid"
     >
-      <div className="grid grid-cols-2 gap-x-6 gap-y-8 text-[15px] leading-relaxed lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-x-6 gap-y-8 text-[16px] leading-relaxed sm:text-[17px] lg:grid-cols-4">
         <div>
           <p className="font-semibold">JKKN Institutions</p>
           <address className="not-italic text-paper/75">{contact.address}</address>

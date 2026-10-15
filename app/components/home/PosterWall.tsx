@@ -18,6 +18,7 @@ export default function PosterWall() {
           return (
             <figure key={p.n}>
               <a href={`/alumni/${p.n}.jpg`} target="_blank" rel="noopener" className="press block">
+                <span className="sr-only"> (opens in a new tab)</span>
                 <Image
                   src={`/alumni/${p.n}.jpg`}
                   alt={`Placement poster: ${p.learners} ${p.learners === 1 ? "Learner" : "Learners"} from ${college} selected by ${p.company}`}

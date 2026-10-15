@@ -67,7 +67,13 @@ test("every image is local or on an allowlisted host", () => {
 test("no stale figures or old terminology", () => {
   const text = JSON.stringify({ colleges, figures, sectors, processSteps, faqs, contact, closingPhotos, heroImages });
   assert.doesNotMatch(text, /\bstudents?\b/i);
-  assert.doesNotMatch(text, /12 LPA|95%|90.95%|1,?200\+/);
+  assert.doesNotMatch(text, /12 LPA|95%|90[–-]95%|1,?200\+/);
+  const dir = "app/components/home";
+  for (const f of readdirSync(dir).filter((n) => n.endsWith(".tsx"))) {
+    const src = readFileSync(`${dir}/${f}`, "utf8");
+    assert.doesNotMatch(src, /\bstudents?\b/i, `${f} says student`);
+    assert.doesNotMatch(src, /12 LPA|95%|90[–-]95%|1,?200\+/, `${f} has stale figure`);
+  }
 });
 
 test("headline copy fits the two-line budget", () => {

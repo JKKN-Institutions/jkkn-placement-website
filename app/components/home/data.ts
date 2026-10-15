@@ -74,7 +74,7 @@ export const colleges: College[] = [
     image: `${MEDIA}af856eac-ce3b-4437-9562-203201b209d5.jpg`,
     imageAlt: "The JKKN College of Arts and Science building and sports courts, seen from above",
     programmes: ["B.Sc.", "B.Com", "BBA", "BCA", "M.Sc.", "M.Com", "MBA", "MCA"],
-    recruiters: ["Sakthi Auto Component", "Pronoia Insurance Marketing", "Foxconn", "TCS", "Infosys BPO", "Concentrix", "Amazon", "HDFC Bank", "ICICI Bank"],
+    recruiters: ["Sakthi Auto Component Limited", "Pronoia Insurance Marketing", "Foxconn", "TCS", "Infosys BPO", "Concentrix", "Amazon", "HDFC Bank", "ICICI Bank"],
     grow: 2,
   },
 ];
@@ -145,7 +145,7 @@ export const sectors = [
   { title: "Healthcare and hospitals", companies: ["Apollo Hospitals", "Fortis Healthcare", "Manipal Hospitals", "MIOT Hospitals", "Kauvery Hospital"] },
   { title: "IT and software", companies: ["TCS", "Infosys", "Wipro", "Cognizant", "HCL Technologies"] },
   { title: "Pharmaceutical", companies: ["Cipla", "Sun Pharma", "Dr. Reddy's Laboratories", "Hetero Pharma", "Lupin"] },
-  { title: "Manufacturing", companies: ["Sakthi Auto Component", "Foxconn", "L&T", "Ashok Leyland", "TVS Motor Company"] },
+  { title: "Manufacturing", companies: ["Sakthi Auto Component Limited", "Foxconn", "L&T", "Ashok Leyland", "TVS Motor Company"] },
   { title: "Diagnostics", companies: ["SRL Diagnostics", "Thyrocare", "Apollo Diagnostics", "Vijaya Diagnostic Centre", "Metropolis Healthcare"] },
   { title: "Insurance and services", companies: ["Pronoia Insurance Marketing", "Omega Healthcare", "Concentrix", "HDFC Bank", "ICICI Bank"] },
 ];
@@ -216,11 +216,11 @@ export const posterTotal = offerRows.reduce((sum, r) => sum + r.offers, 0);
 export const faqs = [
   {
     q: "What is the placement rate?",
-    a: "The Placement Cell reports a 92% placement rate across the six colleges, with more than 500 recruiting partners. Each college has a placement coordinator who works with recruiters in its field.",
+    a: "The Placement Cell reports a 92% placement rate across the six colleges, with more than 500 recruiting partners.",
   },
   {
     q: "Which companies recruit here?",
-    a: "Healthcare, IT, pharmaceutical, manufacturing, diagnostics and service companies, among them Apollo Hospitals, TCS, Infosys, Cipla, Sun Pharma, Foxconn, Sakthi Auto Component and Omega Healthcare.",
+    a: "Healthcare, IT, pharmaceutical, manufacturing, diagnostics and service companies, among them Apollo Hospitals, TCS, Infosys, Cipla, Sun Pharma, Foxconn, Sakthi Auto Component Limited and Omega Healthcare.",
   },
   {
     q: "What do recruiters pay?",

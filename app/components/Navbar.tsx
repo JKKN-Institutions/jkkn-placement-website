@@ -53,7 +53,7 @@ export default function Navbar() {
     <nav className="fixed top-0 left-0 right-0 z-50">
       {/* Top bar */}
       <div className="bg-field-deep">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 text-[13px] text-paper sm:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 text-[13px] leading-4 text-paper sm:px-6 lg:px-8">
           <div className="flex items-center gap-4">
             <span className="flex items-center gap-1">
               <Phone className="h-3 w-3" /> +91-9865910003
@@ -143,7 +143,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="bg-paper lg:hidden">
+        <div className="max-h-[calc(100svh-112px)] overflow-y-auto overscroll-contain bg-paper lg:hidden">
           <div className="space-y-1 px-4 py-3">
             {navLinks.map((link) => (
               <div key={link.label}>

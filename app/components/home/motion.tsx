@@ -22,23 +22,29 @@ export function HeroName({ text, className }: { text: string; className?: string
   const reduce = useReducedMotion();
   if (reduce) return <span className={className}>{text}</span>;
   return (
-    <SplitText
-      text={text}
-      tag="span"
-      splitType="chars"
-      delay={70}
-      duration={0.9}
-      from={{ opacity: 0, y: 60 }}
-      to={{ opacity: 1, y: 0 }}
-      textAlign="left"
-      className={className}
-    />
+    <>
+      <span className="sr-only">{text}</span>
+      <span aria-hidden="true">
+        <SplitText
+          text={text}
+          tag="span"
+          splitType="chars"
+          delay={70}
+          duration={0.9}
+          from={{ opacity: 0, y: 60 }}
+          to={{ opacity: 1, y: 0 }}
+          textAlign="left"
+          className={className}
+        />
+      </span>
+    </>
   );
 }
 
 export function LedgerNumber({ to, separator }: { to: number; separator?: string }) {
   const reduce = useReducedMotion();
-  if (reduce) return <>{separator ? to.toLocaleString("en-US") : String(to)}</>;
+  const hydrated = useSyncExternalStore(() => () => {}, () => true, () => false);
+  if (reduce || !hydrated) return <>{separator ? to.toLocaleString("en-US") : String(to)}</>;
   return <CountUp to={to} separator={separator ?? ""} duration={1.6} />;
 }
 

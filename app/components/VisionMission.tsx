@@ -5,7 +5,7 @@ export default function VisionMission() {
     <section id="vision" className="bg-cream py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-12 text-center">
-          <p className="mb-2 text-sm font-semibold uppercase tracking-wider text-gold">
+          <p className="mb-2 text-sm font-semibold uppercase tracking-wider text-green">
             About Our Vision
           </p>
           <h2 className="text-3xl font-bold text-heading sm:text-4xl">
@@ -31,7 +31,7 @@ export default function VisionMission() {
 
           {/* Mission */}
           <div className="group rounded-2xl bg-white p-8 shadow-sm transition-all hover:shadow-lg border border-gray-100">
-            <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-gold/10 text-gold transition-colors group-hover:bg-gold group-hover:text-white">
+            <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-gold/25 text-green-dark transition-colors group-hover:bg-gold group-hover:text-green-dark">
               <Target className="h-7 w-7" />
             </div>
             <h3 className="mb-4 text-2xl font-bold text-heading">

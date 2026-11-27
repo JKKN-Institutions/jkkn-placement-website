@@ -1,18 +1,15 @@
-"use client";
-
-import Image from "next/image";
-import { Phone, Mail, MapPin } from "lucide-react";
+import { GraduationCap, Phone, Mail, MapPin } from "lucide-react";
 
 const institutions = [
-  { label: "JKKN Dental College and Hospital", href: "https://dental.jkkn.ac.in/" },
+  { label: "JKKN Dental College and Hospital", href: "https://dental.jkkn.ac.in" },
   { label: "JKKN College of Allied Health Sciences", href: "https://ahs.jkkn.ac.in/" },
-  { label: "JKKN College of Pharmacy", href: "https://pharmacy.jkkn.ac.in" },
-  { label: "JKKN College of Nursing", href: "https://nursing.sresakthimayeil.jkkn.ac.in/" },
+  { label: "JKKN College of Pharmacy", href: "https://pharmacy.jkkn.ac.in/" },
+  { label: "Sresakthimayeil Institute Of Nursing And Research", href: "https://nursing.sresakthimayeil.jkkn.ac.in/" },
   { label: "JKKN College of Education", href: "https://edu.jkkn.ac.in/" },
-  { label: "JKKN College of Arts and Science", href: "https://cas.jkkn.ac.in/" },
-  { label: "JKKN College of Engineering", href: "https://engg.jkkn.ac.in/" },
-  { label: "Nattraja Vidhyalya", href: "#" },
-  { label: "JKKN Matriculation Higher Secondary School", href: "#" },
+  { label: "JKKN College of Arts and Science (Autonomous)", href: "https://cas.jkkn.ac.in/" },
+  { label: "JKKN College of Engineering and Technology (Autonomous)", href: "https://engg.jkkn.ac.in/" },
+  { label: "Nattraja Vidhyalya", href: "https://nv.jkkn.ac.in/" },
+  { label: "JKKN Matriculation Higher Secondary School", href: "https://school.jkkn.ac.in/" },
 ];
 
 const socials = [
@@ -63,170 +60,136 @@ const socials = [
   },
 ];
 
+// Mirrors the jkkn.ac.in footer: green gradient, yellow accents, institutions list and map.
 export default function Footer() {
   return (
-    <footer id="footer" style={{ background: "#03311c" }} className="text-white">
-      {/* Main footer */}
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <div className="grid gap-10 lg:grid-cols-[1fr_1fr_1fr]">
-          {/* Left — About + Contact */}
+    <footer
+      id="footer"
+      className="relative overflow-hidden text-white"
+      style={{ background: "linear-gradient(to bottom right, var(--green), var(--green), #047857)" }}
+    >
+      <div className="pointer-events-none absolute inset-0 opacity-20" aria-hidden="true">
+        <div className="absolute top-0 left-1/4 h-96 w-96 rounded-full bg-gold/30 blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 h-80 w-80 rounded-full bg-white/20 blur-3xl" />
+      </div>
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.03]"
+        aria-hidden="true"
+        style={{
+          backgroundImage:
+            "linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)",
+          backgroundSize: "40px 40px",
+        }}
+      />
+
+      <div className="relative mx-auto max-w-7xl px-4 py-16 lg:px-8 lg:py-20">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3 lg:gap-12">
+          {/* About + contact */}
           <div>
-            <div className="mb-4 flex items-center gap-3">
-              <img
-                src="https://pmqodbfhsejbvfbmsfeq.supabase.co/storage/v1/object/public/cms-media/general/d3d124dc-fd80-4d7d-939b-2139a9d7de93.svg"
-                alt="JKKN Logo"
-                width={32}
-                height={32}
-                style={{ width: 32, height: 32 }}
-              />
+            <a href="https://jkkn.ac.in" className="group mb-6 flex items-center gap-3">
+              <div className="relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-xl bg-gradient-to-r from-gold to-yellow-400 shadow-lg shadow-gold/30 transition-transform duration-300 group-hover:scale-105">
+                <GraduationCap className="h-7 w-7 text-gray-900" aria-hidden="true" />
+              </div>
               <div>
-                <p className="text-base font-bold leading-tight">JKKN Institutions</p>
-                <p className="text-[10px] font-medium tracking-[0.2em] text-gray-400 uppercase">
+                <p className="text-xl font-bold">JKKN Institutions</p>
+                <p className="text-xs font-medium uppercase tracking-wider text-white/70">
                   Excellence in Education
                 </p>
               </div>
-            </div>
-
-            <p className="mb-6 text-[13px] leading-relaxed text-gray-400" style={{ maxWidth: 300 }}>
-              JKKN Institutions, recognized as one of the best colleges in Erode
-              Region, is committed to providing quality education and fostering
-              innovation, research, and holistic student development to prepare
-              learners for global challenges.
+            </a>
+            <p className="mb-8 max-w-md text-sm leading-relaxed text-white/80">
+              JKKN Institutions, recognized as one of the best colleges in Erode Region, is
+              committed to providing quality education and fostering innovation, research, and
+              holistic learner development to prepare learners for global challenges.
             </p>
-
-            <ul className="space-y-3.5">
-              <li className="flex items-center gap-3">
-                <span
-                  className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full"
-                  style={{ background: "rgba(15,143,86,0.2)" }}
-                >
-                  <Phone className="h-3.5 w-3.5" style={{ color: "#0f8f56" }} />
-                </span>
-                <a
-                  href="tel:+919345855001"
-                  className="text-sm text-gray-300 transition-colors hover:text-white"
-                >
-                  +91 9345855001
-                </a>
-              </li>
-              <li className="flex items-center gap-3">
-                <span
-                  className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full"
-                  style={{ background: "rgba(15,143,86,0.2)" }}
-                >
-                  <Mail className="h-3.5 w-3.5" style={{ color: "#0f8f56" }} />
-                </span>
-                <a
-                  href="mailto:info@jkkn.ac.in"
-                  className="text-sm text-gray-300 transition-colors hover:text-white"
-                >
-                  info@jkkn.ac.in
-                </a>
-              </li>
-              <li className="flex items-start gap-3">
-                <span
-                  className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full mt-0.5"
-                  style={{ background: "rgba(15,143,86,0.2)" }}
-                >
-                  <MapPin className="h-3.5 w-3.5" style={{ color: "#0f8f56" }} />
-                </span>
-                <span className="text-sm leading-relaxed text-gray-300">
+            <div className="space-y-4">
+              <a
+                href="tel:+919345855001"
+                className="group flex items-center gap-4 text-white/80 transition-colors hover:text-white"
+              >
+                <div className="rounded-xl bg-white/10 p-2.5 transition-colors group-hover:bg-gold/30">
+                  <Phone className="h-4 w-4 text-gold" aria-hidden="true" />
+                </div>
+                <span className="text-sm">+91 9345855001</span>
+              </a>
+              <a
+                href="mailto:info@jkkn.ac.in"
+                className="group flex items-center gap-4 text-white/80 transition-colors hover:text-white"
+              >
+                <div className="rounded-xl bg-white/10 p-2.5 transition-colors group-hover:bg-gold/30">
+                  <Mail className="h-4 w-4 text-gold" aria-hidden="true" />
+                </div>
+                <span className="text-sm">info@jkkn.ac.in</span>
+              </a>
+              <div className="flex items-start gap-4 text-white/80">
+                <div className="shrink-0 rounded-xl bg-white/10 p-2.5">
+                  <MapPin className="h-4 w-4 text-gold" aria-hidden="true" />
+                </div>
+                <span className="text-sm">
                   Natarajapuram, NH-544 (Salem To Coimbatore National Highway),
-                  Komarapalayam (TK), Namakkal (DT), Tamil Nadu - 638183
+                  <br />
+                  Komarapalayam (TK),
+                  <br />
+                  Namakkal (DT),
+                  <br />
+                  Tamil Nadu - 638183
                 </span>
-              </li>
-            </ul>
+              </div>
+            </div>
           </div>
 
-          {/* Center — Our Institutions */}
+          {/* Our Institutions */}
           <div>
-            <h4 className="mb-5 flex items-center gap-2.5 text-sm font-bold tracking-wider">
-              <span
-                className="inline-block h-[2px] w-6 rounded-full"
-                style={{ background: "#0f8f56" }}
-              />
+            <h2 className="mb-6 flex items-center gap-2 text-lg font-semibold">
+              <span className="h-0.5 w-8 rounded-full bg-gold" />
               Our Institutions
-            </h4>
-            <ul className="space-y-2">
-              {institutions.map((inst) => (
-                <li key={inst.label} className="flex items-center gap-2.5">
+            </h2>
+            <ul className="flex flex-wrap gap-x-6 gap-y-3">
+              {institutions.map((inst, i) => (
+                <li key={inst.label} className="flex items-center">
                   <a
                     href={inst.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[13px] text-gray-400 transition-colors hover:text-green-light"
+                    className="text-sm text-white transition-all duration-300 hover:text-gold"
                   >
                     {inst.label}
                   </a>
-                  <span
-                    className="inline-block h-4 w-px shrink-0"
-                    style={{ background: "rgba(255,255,255,0.15)" }}
-                  />
+                  {i < institutions.length - 1 && <span className="ml-6 text-white/30">|</span>}
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Right — Our Location */}
+          {/* Our Location */}
           <div>
-            <h4 className="mb-5 flex items-center gap-2.5 text-sm font-bold tracking-wider">
-              <span
-                className="inline-block h-[2px] w-6 rounded-full"
-                style={{ background: "#0f8f56" }}
-              />
+            <h2 className="mb-6 flex items-center gap-2 text-lg font-semibold">
+              <span className="h-0.5 w-8 rounded-full bg-gold" />
               Our Location
-            </h4>
-            <div
-              className="overflow-hidden rounded-lg"
-              style={{ border: "1px solid rgba(255,255,255,0.1)" }}
-            >
+            </h2>
+            <div className="overflow-hidden rounded-xl border border-white/10 shadow-lg">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3912.123!2d77.73060452273064!3d11.445400813968119!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba96e0a0a0a0a0a%3A0x0!2sJKKN+Educational+Institutions!5e0!3m2!1sen!2sin!4v1700000000000"
                 width="100%"
-                height="170"
-                style={{ border: 0 }}
+                height="200"
+                style={{ border: 0, display: "block" }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 title="JKKN Institutions Location"
               />
             </div>
-            <a
-              href="https://maps.google.com/?q=11.445400813968119,77.73060452273064"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-3 inline-flex items-center gap-1.5 text-xs text-gray-400 transition-colors hover:text-white"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={2}
-                className="h-3 w-3"
-              >
-                <circle cx="12" cy="10" r="3" />
-                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
-              </svg>
-              View on Google Maps
-            </a>
           </div>
         </div>
       </div>
 
       {/* Copyright bar */}
-      <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-4 sm:flex-row sm:px-6 lg:px-8">
-          <div className="flex items-center gap-2 text-xs text-gray-500">
-            <p>&copy; 2026 JKKN Institutions. All rights reserved.</p>
-            <span className="hidden sm:inline text-gray-600">|</span>
-            <a
-              href="#"
-              className="text-gray-500 transition-colors hover:text-white"
-            >
-              Admin
-            </a>
-          </div>
-          <div className="flex items-center gap-2">
+      <div className="relative border-t border-white/10">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-4 py-6 md:flex-row lg:px-8">
+          <p className="text-center text-sm text-white/70 md:text-left">
+            &copy; 2026 JKKN Institutions. All Rights Reserved.
+          </p>
+          <div className="flex items-center gap-3">
             {socials.map((s) => (
               <a
                 key={s.label}
@@ -234,8 +197,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={s.label}
-                className="flex h-8 w-8 items-center justify-center rounded-full text-gray-400 transition-colors hover:bg-white/10 hover:text-white"
-                style={{ background: "rgba(255,255,255,0.07)" }}
+                className="rounded-xl border border-white/10 bg-white/10 p-2.5 transition-all duration-300 hover:border-gold hover:bg-gold hover:text-gray-900"
               >
                 {s.icon}
               </a>

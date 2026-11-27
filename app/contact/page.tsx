@@ -13,7 +13,7 @@ export default function ContactPage() {
   return (
     <>
       <Navbar />
-      <main style={{ paddingTop: 112 }}>
+      <main style={{ paddingTop: "var(--nav-h)" }}>
         <CTA />
       </main>
       <Footer />

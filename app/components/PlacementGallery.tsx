@@ -14,7 +14,7 @@ export default function PlacementGallery() {
     <section id="gallery" className="bg-cream py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-12 text-center">
-          <p className="mb-2 text-sm font-semibold uppercase tracking-wider text-gold">
+          <p className="mb-2 text-sm font-semibold uppercase tracking-wider text-green">
             Gallery
           </p>
           <h2 className="text-3xl font-bold text-heading sm:text-4xl">

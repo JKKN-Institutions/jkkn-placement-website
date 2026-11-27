@@ -87,7 +87,7 @@ export default function AIWorkshopContent() {
     <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#0b6d41"/><path d="M6 10l3 3 5-5" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
   );
   const IconRocket = (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7db247" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 3 0 3 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-3 0-3"/></svg>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffde59" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 3 0 3 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-3 0-3"/></svg>
   );
   const IconPhone = (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
@@ -147,7 +147,7 @@ export default function AIWorkshopContent() {
       {/* ---------- inline styles ---------- */}
       <style>{`
 /* ===== BASE / RESET ===== */
-.aiw-root{font-family:'Inter',system-ui,-apple-system,sans-serif;color:#4B5563;line-height:1.6;overflow-x:hidden;}
+.aiw-root{font-family:inherit;color:#4B5563;line-height:1.6;overflow-x:hidden;}
 .aiw-root *,.aiw-root *::before,.aiw-root *::after{box-sizing:border-box;margin:0;padding:0;}
 
 /* ===== BILINGUAL TOGGLE ===== */
@@ -180,13 +180,13 @@ export default function AIWorkshopContent() {
 .aiw-back-btn:active{transform:translateX(-2px);}
 
 /* ===== HERO ===== */
-.aiw-hero{background:radial-gradient(rgba(255,255,255,0.06) 1px,transparent 1px),linear-gradient(135deg,#021e12 0%,#03311c 40%,#043a1f 100%);background-size:30px 30px,100% 100%;color:#fff;padding:80px 0 100px;position:relative;overflow:hidden;min-height:100vh;display:flex;align-items:center;}
+.aiw-hero{background:radial-gradient(rgba(255,255,255,0.06) 1px,transparent 1px),linear-gradient(135deg,#021e12 0%,#032816 40%,#043a1f 100%);background-size:30px 30px,100% 100%;color:#fff;padding:80px 0 100px;position:relative;overflow:hidden;min-height:100vh;display:flex;align-items:center;}
 .aiw-hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
-.aiw-hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(125,178,71,0.15);color:#7db247;border:1px solid rgba(125,178,71,0.3);padding:8px 18px;border-radius:999px;font-size:13px;font-weight:600;margin-bottom:24px;}
-.aiw-pulse-dot{width:8px;height:8px;background:#7db247;border-radius:50%;animation:aiwDotPulse 2s ease-in-out infinite;}
+.aiw-hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,222,89,0.15);color:#ffde59;border:1px solid rgba(255,222,89,0.3);padding:8px 18px;border-radius:999px;font-size:13px;font-weight:600;margin-bottom:24px;}
+.aiw-pulse-dot{width:8px;height:8px;background:#ffde59;border-radius:50%;animation:aiwDotPulse 2s ease-in-out infinite;}
 @keyframes aiwDotPulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(1.5);}}
 .aiw-hero h1{font-size:48px;font-weight:800;line-height:1.15;margin-bottom:20px;color:#fff;}
-.aiw-hero h1 .aiw-accent{color:#7db247;}
+.aiw-hero h1 .aiw-accent{color:#ffde59;}
 .aiw-hero-desc{font-size:17px;color:rgba(255,255,255,0.8);margin-bottom:32px;max-width:520px;}
 .aiw-hero-ctas{display:flex;gap:16px;margin-bottom:36px;flex-wrap:wrap;}
 .aiw-btn-primary{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;background:#0b6d41;color:#fff;border:none;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;text-decoration:none;transition:all .3s ease;animation:aiwPulse 2s ease-in-out infinite;position:relative;overflow:hidden;}
@@ -195,7 +195,7 @@ export default function AIWorkshopContent() {
 .aiw-btn-primary:hover::after{left:100%;}
 .aiw-btn-primary:active{transform:translateY(-1px);box-shadow:0 5px 15px rgba(11,109,65,0.4);}
 .aiw-btn-outline{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;background:transparent;color:rgba(255,255,255,0.8);border:2px solid rgba(255,255,255,0.2);border-radius:12px;font-size:16px;font-weight:600;cursor:pointer;text-decoration:none;transition:all .3s ease;}
-.aiw-btn-outline:hover{border-color:#7db247;color:#fff;background:rgba(125,178,71,0.1);transform:translateY(-3px);box-shadow:0 10px 30px rgba(125,178,71,0.2);}
+.aiw-btn-outline:hover{border-color:#ffde59;color:#fff;background:rgba(255,222,89,0.1);transform:translateY(-3px);box-shadow:0 10px 30px rgba(255,222,89,0.2);}
 .aiw-btn-outline:active{transform:translateY(-1px);}
 .aiw-trust-badges{display:flex;gap:16px;flex-wrap:wrap;}
 .aiw-trust-badge{display:flex;align-items:center;gap:6px;color:rgba(255,255,255,0.5);font-size:12px;}
@@ -210,10 +210,10 @@ export default function AIWorkshopContent() {
 .aiw-hero-card-tags{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;justify-content:center;}
 .aiw-hero-card-tag{padding:5px 16px;border-radius:999px;font-size:12px;font-weight:600;}
 .aiw-tag-green{background:rgba(11,109,65,0.35);color:#0f8f56;border:1px solid rgba(11,109,65,0.5);}
-.aiw-tag-accent{background:rgba(125,178,71,0.25);color:#7db247;border:1px solid rgba(125,178,71,0.4);}
+.aiw-tag-accent{background:rgba(255,222,89,0.25);color:#ffde59;border:1px solid rgba(255,222,89,0.4);}
 .aiw-hero-card-free{position:absolute;top:-12px;right:-12px;background:#0b6d41;color:#fff;padding:10px 22px;border-radius:16px;font-size:15px;font-weight:800;box-shadow:0 6px 20px rgba(11,109,65,0.45);z-index:2;letter-spacing:0.5px;}
 .aiw-hero-card-label{position:absolute;bottom:-16px;left:-16px;background:rgba(255,255,255,0.05);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.1);padding:12px 20px;border-radius:14px;font-size:14px;color:rgba(255,255,255,0.85);z-index:2;}
-.aiw-label-accent{font-weight:700;color:#7db247;}
+.aiw-label-accent{font-weight:700;color:#ffde59;}
 
 /* stats bar */
 .aiw-stats-bar{position:absolute;bottom:0;left:0;right:0;background:rgba(255,255,255,0.05);border-top:1px solid rgba(255,255,255,0.08);}
@@ -242,7 +242,7 @@ export default function AIWorkshopContent() {
 .aiw-module-header{padding:24px;color:#fff;}
 .aiw-module-header.mod1{background:#0b6d41;}
 .aiw-module-header.mod2{background:#0f8f56;}
-.aiw-module-header.mod3{background:linear-gradient(135deg,#7db247,#0f8f56);}
+.aiw-module-header.mod3{background:linear-gradient(135deg,#085032,#0f8f56);}
 .aiw-module-num{font-size:13px;font-weight:600;opacity:0.8;text-transform:uppercase;letter-spacing:1px;}
 .aiw-module-title{font-size:20px;font-weight:700;margin-top:4px;}
 .aiw-module-body{padding:24px;}
@@ -252,18 +252,18 @@ export default function AIWorkshopContent() {
 .aiw-module-duration{display:inline-block;background:rgba(11,109,65,0.1);color:#0b6d41;padding:4px 14px;border-radius:999px;font-size:13px;font-weight:600;}
 
 /* ===== BENEFITS ===== */
-.aiw-benefits{padding:80px 0;background:radial-gradient(rgba(255,255,255,0.06) 1px,transparent 1px),linear-gradient(135deg,#021e12 0%,#03311c 40%,#043a1f 100%);background-size:30px 30px,100% 100%;color:#fff;}
+.aiw-benefits{padding:80px 0;background:radial-gradient(rgba(255,255,255,0.06) 1px,transparent 1px),linear-gradient(135deg,#021e12 0%,#032816 40%,#043a1f 100%);background-size:30px 30px,100% 100%;color:#fff;}
 .aiw-benefits-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
 .aiw-glass-panel{background:rgba(255,255,255,0.05);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:36px;}
 .aiw-glass-panel h3{font-size:22px;font-weight:700;margin-bottom:20px;}
 .aiw-benefit-list{list-style:none;}
 .aiw-benefit-list li{display:flex;align-items:flex-start;gap:10px;padding:8px 0;font-size:15px;color:rgba(255,255,255,0.85);}
 .aiw-benefit-sidebar{margin-top:28px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.1);}
-.aiw-benefit-sidebar h4{font-size:17px;font-weight:600;color:#7db247;margin-bottom:14px;}
+.aiw-benefit-sidebar h4{font-size:17px;font-weight:600;color:#ffde59;margin-bottom:14px;}
 .aiw-benefit-sidebar li{font-size:14px;}
 .aiw-jkkn-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:28px;}
 .aiw-jkkn-stat{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:20px;text-align:center;}
-.aiw-jkkn-stat-num{font-size:28px;font-weight:800;color:#7db247;}
+.aiw-jkkn-stat-num{font-size:28px;font-weight:800;color:#ffde59;}
 .aiw-jkkn-stat-label{font-size:12px;color:rgba(255,255,255,0.6);margin-top:4px;}
 .aiw-why-list{list-style:none;}
 .aiw-why-list li{display:flex;align-items:flex-start;gap:10px;padding:8px 0;font-size:14px;color:rgba(255,255,255,0.85);}
@@ -279,7 +279,7 @@ export default function AIWorkshopContent() {
 .aiw-step-circle.sc3{background:#085032;}
 .aiw-step-circle.sc4{background:#0b6d41;}
 .aiw-step-circle.sc5{background:#0f8f56;}
-.aiw-step-circle.sc6{background:#7db247;}
+.aiw-step-circle.sc6{background:#ffde59;color:#032816;}
 .aiw-step-card h4{font-size:17px;font-weight:700;color:#111827;margin-bottom:4px;}
 .aiw-step-time{font-size:13px;color:#0b6d41;font-weight:600;}
 .aiw-step-desc{font-size:14px;color:#4B5563;margin-top:8px;}
@@ -293,7 +293,7 @@ export default function AIWorkshopContent() {
 .aiw-schedule-meta{font-size:14px;color:#4B5563;margin-bottom:6px;}
 .aiw-schedule-status{display:inline-block;padding:4px 14px;border-radius:999px;font-size:12px;font-weight:700;margin-top:12px;}
 .aiw-status-open{background:rgba(11,109,65,0.15);color:#0b6d41;}
-.aiw-status-soon{background:rgba(125,178,71,0.15);color:#7db247;}
+.aiw-status-soon{background:rgba(255,222,89,0.15);color:#ffde59;}
 
 /* ===== JKKN TRUST ===== */
 .aiw-trust{padding:80px 0;background:#fff;}
@@ -305,19 +305,19 @@ export default function AIWorkshopContent() {
 .aiw-college-chip{background:#f0f7f2;color:#0b6d41;border:1px solid rgba(11,109,65,0.2);padding:8px 20px;border-radius:999px;font-size:14px;font-weight:600;}
 
 /* ===== REGISTRATION ===== */
-.aiw-registration{padding:80px 0;background:radial-gradient(rgba(255,255,255,0.06) 1px,transparent 1px),linear-gradient(135deg,#021e12 0%,#03311c 40%,#043a1f 100%);background-size:30px 30px,100% 100%;color:#fff;}
+.aiw-registration{padding:80px 0;background:radial-gradient(rgba(255,255,255,0.06) 1px,transparent 1px),linear-gradient(135deg,#021e12 0%,#032816 40%,#043a1f 100%);background-size:30px 30px,100% 100%;color:#fff;}
 .aiw-form-box{max-width:640px;margin:0 auto;background:rgba(255,255,255,0.05);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.08);border-radius:24px;padding:40px;}
 .aiw-form-box label{display:block;font-size:14px;font-weight:600;margin-bottom:6px;color:rgba(255,255,255,0.9);}
 .aiw-form-box input[type="text"],.aiw-form-box input[type="tel"],.aiw-form-box input[type="email"],.aiw-form-box select{width:100%;padding:12px 16px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.08);color:#fff;font-size:15px;margin-bottom:18px;outline:none;transition:border .3s;}
 .aiw-form-box input::placeholder{color:rgba(255,255,255,0.4);}
-.aiw-form-box input:focus,.aiw-form-box select:focus{border-color:#7db247;}
+.aiw-form-box input:focus,.aiw-form-box select:focus{border-color:#ffde59;}
 .aiw-form-box select option{color:#111827;background:#fff;}
 .aiw-consent{display:flex;align-items:flex-start;gap:10px;margin-bottom:24px;font-size:13px;color:rgba(255,255,255,0.7);}
 .aiw-consent input{margin-top:3px;accent-color:#0b6d41;}
 .aiw-form-submit{width:100%;padding:14px;background:#0b6d41;color:#fff;border:none;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;transition:background .3s;}
 .aiw-form-submit:hover{background:#0f8f56;}
 .aiw-success{text-align:center;padding:40px 20px;}
-.aiw-success h3{font-size:28px;color:#7db247;margin-bottom:12px;}
+.aiw-success h3{font-size:28px;color:#ffde59;margin-bottom:12px;}
 .aiw-success p{font-size:16px;color:rgba(255,255,255,0.8);}
 .aiw-success-icon{width:80px;height:80px;background:#0b6d41;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;}
 
@@ -460,15 +460,15 @@ export default function AIWorkshopContent() {
               </div>
               <div className="aiw-trust-badges">
                 <div className="aiw-trust-badge">
-                  <svg width="14" height="14" viewBox="0 0 20 20" fill="none"><path d="M5 10l4 4 6-7" stroke="#7db247" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                  <svg width="14" height="14" viewBox="0 0 20 20" fill="none"><path d="M5 10l4 4 6-7" stroke="#ffde59" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
                   <En>NAAC A+ Accredited</En><Ta>NAAC A+ தரநிலை</Ta>
                 </div>
                 <div className="aiw-trust-badge">
-                  <svg width="14" height="14" viewBox="0 0 20 20" fill="none"><path d="M5 10l4 4 6-7" stroke="#7db247" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                  <svg width="14" height="14" viewBox="0 0 20 20" fill="none"><path d="M5 10l4 4 6-7" stroke="#ffde59" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
                   <En>74+ Years Legacy</En><Ta>74+ ஆண்டு மரபுரிமை</Ta>
                 </div>
                 <div className="aiw-trust-badge">
-                  <svg width="14" height="14" viewBox="0 0 20 20" fill="none"><path d="M5 10l4 4 6-7" stroke="#7db247" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                  <svg width="14" height="14" viewBox="0 0 20 20" fill="none"><path d="M5 10l4 4 6-7" stroke="#ffde59" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
                   <En>50,000+ Alumni</En><Ta>50,000+ முன்னாள் மாணவர்கள்</Ta>
                 </div>
               </div>
@@ -482,7 +482,7 @@ export default function AIWorkshopContent() {
                 <div className="aiw-hero-card-inner-wrap">
                   <div className="aiw-hero-card-inner">
                     <svg className="aiw-hero-card-icon" width="80" height="80" viewBox="0 0 80 80" fill="none">
-                      <rect x="37" y="4" width="6" height="12" rx="3" fill="#7db247"/>
+                      <rect x="37" y="4" width="6" height="12" rx="3" fill="#ffde59"/>
                       <circle cx="40" cy="4" r="4" fill="#e8b931"/>
                       <rect x="8" y="32" width="8" height="16" rx="4" fill="#e05a8d"/>
                       <rect x="64" y="32" width="8" height="16" rx="4" fill="#e05a8d"/>
@@ -522,7 +522,7 @@ export default function AIWorkshopContent() {
               <div className="aiw-stat-label"><En>AI Modules</En><Ta>AI பிரிவுகள்</Ta></div>
             </div>
             <div className="aiw-stat-item">
-              <div className="aiw-stat-num" style={{ color: '#7db247' }}>6 <span style={{ fontSize: 16 }}><En>Hrs</En><Ta>மணி</Ta></span></div>
+              <div className="aiw-stat-num" style={{ color: '#ffde59' }}>6 <span style={{ fontSize: 16 }}><En>Hrs</En><Ta>மணி</Ta></span></div>
               <div className="aiw-stat-label"><En>Full-Day Workshop</En><Ta>முழு நாள் பட்டறை</Ta></div>
             </div>
             <div className="aiw-stat-item">
@@ -680,7 +680,7 @@ export default function AIWorkshopContent() {
       <section className="aiw-benefits">
         <div className="aiw-container aiw-reveal" ref={addRevealRef}>
           <div className="aiw-text-center aiw-mb-48">
-            <div className="aiw-section-badge" style={{ background: "rgba(125,178,71,0.15)", color: "#7db247", borderColor: "rgba(125,178,71,0.25)" }}>
+            <div className="aiw-section-badge" style={{ background: "rgba(255,222,89,0.15)", color: "#ffde59", borderColor: "rgba(255,222,89,0.25)" }}>
               <En>FOR STUDENTS ONLY</En><Ta>மாணவர்களுக்கு மட்டுமே</Ta>
             </div>
             <h2 className="aiw-section-title" style={{ color: "#fff" }}>
@@ -867,7 +867,7 @@ export default function AIWorkshopContent() {
       <section className="aiw-registration" id="register">
         <div className="aiw-container aiw-reveal" ref={addRevealRef}>
           <div className="aiw-text-center aiw-mb-48">
-            <div className="aiw-section-badge" style={{ background: "rgba(125,178,71,0.15)", color: "#7db247", borderColor: "rgba(125,178,71,0.25)" }}>
+            <div className="aiw-section-badge" style={{ background: "rgba(255,222,89,0.15)", color: "#ffde59", borderColor: "rgba(255,222,89,0.25)" }}>
               <En>FREE REGISTRATION</En><Ta>இலவச பதிவு</Ta>
             </div>
             <h2 className="aiw-section-title" style={{ color: "#fff" }}>

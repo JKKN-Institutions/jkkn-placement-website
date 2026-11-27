@@ -15,7 +15,7 @@ export default function PlacementsPage() {
   return (
     <>
       <Navbar />
-      <main style={{ paddingTop: 112 }}>
+      <main style={{ paddingTop: "var(--nav-h)" }}>
         <Process />
         <Training />
         <Sectors />

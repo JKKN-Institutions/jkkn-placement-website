@@ -1,49 +1,62 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useCallback, useEffect, useRef, useState, type MouseEvent } from "react";
+import { Award, ChevronLeft, ChevronRight, X } from "lucide-react";
+import LogoLoop, { type LogoItem } from "@/components/LogoLoop";
 
-const alumniImages = Array.from({ length: 23 }, (_, i) =>
-  `/alumni/${i + 1}.jpg`
-);
+// Batch 2025 selection posters. Rows scroll small copies from /alumni/thumbs;
+// the lightbox opens the full-size poster.
+const POSTER_COUNT = 23;
+const posters = Array.from({ length: POSTER_COUNT }, (_, i) => ({
+  src: `/alumni/thumbs/${i + 1}.jpg`,
+  full: `/alumni/${i + 1}.jpg`,
+  alt: `Batch 2025 selection poster ${i + 1}`,
+}));
+
+const half = Math.ceil(POSTER_COUNT / 2);
+const posterRows = [posters.slice(0, half), posters.slice(half)];
+
+// Defined once at module level: LogoLoop memoises on this function.
+// Clicks are handled by the wrapper (event delegation via data-poster).
+function renderPoster(item: LogoItem) {
+  if (!("src" in item)) return null;
+  return (
+    <button type="button" className="al-poster" data-poster={item.src} aria-label={`Open ${item.alt}`}>
+      <img src={item.src} alt={item.alt} loading="lazy" draggable={false} />
+    </button>
+  );
+}
 
 export default function AlumniGallery() {
   const sectionRef = useRef<HTMLElement>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
-  const [paused, setPaused] = useState(false);
   const [lightbox, setLightbox] = useState<number | null>(null);
-  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  const scrollNext = useCallback(() => {
-    const track = trackRef.current;
-    if (!track) return;
-    const card = track.querySelector(".al-item") as HTMLElement;
-    if (!card) return;
-    const cardWidth = card.offsetWidth + 16;
-    const maxScroll = track.scrollWidth - track.clientWidth;
-    if (track.scrollLeft >= maxScroll - 5) {
-      track.scrollTo({ left: 0, behavior: "smooth" });
-    } else {
-      track.scrollBy({ left: cardWidth, behavior: "smooth" });
-    }
-  }, []);
+  const step = useCallback(
+    (delta: number) => setLightbox((i) => (i === null ? i : (i + delta + POSTER_COUNT) % POSTER_COUNT)),
+    []
+  );
+
+  const openFromClick = (e: MouseEvent<HTMLDivElement>) => {
+    const btn = (e.target as HTMLElement).closest<HTMLElement>("[data-poster]");
+    if (!btn) return;
+    const index = posters.findIndex((p) => p.src === btn.dataset.poster);
+    if (index >= 0) setLightbox(index);
+  };
 
   useEffect(() => {
-    if (!paused && lightbox === null) {
-      intervalRef.current = setInterval(scrollNext, 2500);
-    }
-    return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
+    if (lightbox === null) return;
+    document.body.style.overflow = "hidden";
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setLightbox(null);
+      if (e.key === "ArrowRight") step(1);
+      if (e.key === "ArrowLeft") step(-1);
     };
-  }, [paused, lightbox, scrollNext]);
-
-  useEffect(() => {
-    if (lightbox !== null) {
-      document.body.style.overflow = "hidden";
-    } else {
+    window.addEventListener("keydown", onKey);
+    return () => {
       document.body.style.overflow = "";
-    }
-    return () => { document.body.style.overflow = ""; };
-  }, [lightbox]);
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [lightbox, step]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -58,135 +71,126 @@ export default function AlumniGallery() {
     return () => observer.disconnect();
   }, []);
 
+  const current = lightbox === null ? null : posters[lightbox];
+
   return (
     <section ref={sectionRef} id="alumni" className="al-section">
-      <div className="al-header-wrap">
-        <div className="reveal" style={{ marginBottom: 48 }}>
-          <div className="al-title-label">Our Pride</div>
-          <h2 className="al-title">
-            <span>Alumni</span>
-          </h2>
+      <div className="al-header reveal">
+        <div className="al-label">
+          <Award size={16} aria-hidden="true" />
+          Our Pride
         </div>
+        <div className="al-title-row">
+          <span className="al-rule" aria-hidden="true" />
+          <h2 className="al-title">Alumni</h2>
+          <span className="al-rule" aria-hidden="true" />
+        </div>
+        <p className="al-sub">Batch 2025 learners selected by leading recruiters. Select a poster to view it in full.</p>
       </div>
 
-      <div
-        className="al-slider-wrap"
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}
-      >
-        <div className="al-slider-track" ref={trackRef}>
-          {alumniImages.map((src, i) => (
-            <div key={i} className="al-item" onClick={() => setLightbox(i)}>
-              <div className="al-item-inner">
-                <img src={src} alt={`Alumni ${i + 1}`} loading="lazy" />
-                <div className="al-overlay">
-                  <svg width={28} height={28} viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth={2}>
-                    <circle cx="11" cy="11" r="8" />
-                    <path d="M21 21l-4.35-4.35" />
-                    <path d="M11 8v6M8 11h6" />
-                  </svg>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+      {/* minmax(0, 1fr): the loop sizes itself to this column, so the column must not grow with its content */}
+      <div className="reveal al-rows" onClick={openFromClick}>
+        {posterRows.map((logos, i) => (
+          <LogoLoop
+            key={i}
+            logos={logos}
+            direction={i === 0 ? "left" : "right"}
+            speed={45}
+            logoHeight={200}
+            gap={20}
+            renderItem={renderPoster}
+            pauseOnHover
+            fadeOut
+            ariaLabel={i === 0 ? "Selection posters" : "More selection posters"}
+          />
+        ))}
       </div>
 
-      {lightbox !== null && (
-        <div className="al-lightbox" onClick={() => setLightbox(null)}>
-          <button className="al-lb-close" onClick={(e) => { e.stopPropagation(); setLightbox(null); }}>
-            <svg width={28} height={28} viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth={2}>
-              <path d="M18 6L6 18M6 6l12 12" />
-            </svg>
+      {current && lightbox !== null && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={current.alt}
+          onClick={() => setLightbox(null)}
+          className="fixed inset-0 z-[9999] flex flex-col items-center justify-center gap-4 p-4"
+          style={{ background: "rgba(3, 20, 12, 0.94)" }}
+        >
+          <button
+            type="button"
+            aria-label="Close"
+            onClick={() => setLightbox(null)}
+            className="absolute top-4 right-4 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/25"
+          >
+            <X size={26} />
           </button>
-          <button className="al-lb-nav al-lb-prev" onClick={(e) => { e.stopPropagation(); setLightbox((lightbox - 1 + alumniImages.length) % alumniImages.length); }}>
-            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth={2}>
-              <path d="M15 18l-6-6 6-6" />
-            </svg>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={current.full}
+            alt={current.alt}
+            onClick={(e) => e.stopPropagation()}
+            style={{ maxWidth: "min(90vw, 1200px)", maxHeight: "80vh", width: "auto", height: "auto", borderRadius: 12, objectFit: "contain" }}
+          />
+          <p className="text-white/60" onClick={(e) => e.stopPropagation()}>
+            {lightbox + 1} / {POSTER_COUNT}
+          </p>
+          <button
+            type="button"
+            aria-label="Previous poster"
+            onClick={(e) => { e.stopPropagation(); step(-1); }}
+            className="absolute top-1/2 left-3 flex h-12 w-12 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-[var(--green)] md:left-6"
+          >
+            <ChevronLeft size={26} />
           </button>
-          <img src={alumniImages[lightbox]} alt={`Alumni ${lightbox + 1}`} className="al-lb-img" onClick={(e) => e.stopPropagation()} />
-          <button className="al-lb-nav al-lb-next" onClick={(e) => { e.stopPropagation(); setLightbox((lightbox + 1) % alumniImages.length); }}>
-            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth={2}>
-              <path d="M9 18l6-6-6-6" />
-            </svg>
+          <button
+            type="button"
+            aria-label="Next poster"
+            onClick={(e) => { e.stopPropagation(); step(1); }}
+            className="absolute top-1/2 right-3 flex h-12 w-12 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-[var(--green)] md:right-6"
+          >
+            <ChevronRight size={26} />
           </button>
         </div>
       )}
 
       <style>{`
-        .al-section { position: relative; padding: 70px 0 60px; background: var(--green-dark); overflow: hidden; }
-        .al-header-wrap { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
-        .al-title-label {
-          font-size: 0.85rem; font-weight: 600; color: var(--green-light);
-          text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;
+        .al-section {
+          position: relative; padding: 80px 0; overflow: hidden;
+          background:
+            radial-gradient(ellipse 60% 55% at 85% 0%, rgba(255, 222, 89, 0.12) 0%, transparent 70%),
+            radial-gradient(ellipse 55% 50% at 10% 100%, rgba(15, 143, 86, 0.35) 0%, transparent 70%),
+            var(--green-darker);
         }
+        .al-header { max-width: 1400px; margin: 0 auto 48px; padding: 0 16px; text-align: center; }
+        .al-label {
+          display: inline-flex; align-items: center; gap: 8px;
+          padding: 8px 16px; margin-bottom: 20px; border-radius: 999px;
+          background: rgba(255, 255, 255, 0.1); color: var(--gold);
+          font-size: 0.875rem; font-weight: 600;
+        }
+        .al-title-row { display: flex; align-items: center; justify-content: center; gap: 24px; }
+        .al-rule { width: 80px; height: 2px; border-radius: 2px; background: var(--gold); flex-shrink: 0; }
         .al-title {
-          font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 800;
-          color: #fff; line-height: 1.2; letter-spacing: -0.02em;
+          font-size: clamp(1.75rem, 3.4vw, 2.6rem); font-weight: 700;
+          color: #fff; line-height: 1.15; letter-spacing: -0.025em;
         }
-        .al-title span { color: var(--green-light); }
+        .al-sub { max-width: 600px; margin: 16px auto 0; font-size: 1.1rem; line-height: 1.6; color: rgba(255, 255, 255, 0.8); }
 
-        .al-slider-wrap { overflow: hidden; padding: 0 24px; }
-        .al-slider-track {
-          display: flex; gap: 16px;
-          overflow-x: auto; scroll-snap-type: x mandatory;
-          scrollbar-width: none; -ms-overflow-style: none; scroll-behavior: smooth;
+        .al-rows { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; }
+        .al-poster {
+          display: block; width: 325px; height: 200px; padding: 0; overflow: hidden;
+          border: 2px solid rgba(255, 255, 255, 0.14); border-radius: 18px;
+          background: #fff; cursor: pointer;
+          transition: border-color 200ms ease, box-shadow 200ms ease;
         }
-        .al-slider-track::-webkit-scrollbar { display: none; }
+        .al-poster img { width: 100%; height: 100%; max-width: none; object-fit: cover; }
+        .al-poster:hover { border-color: var(--gold); box-shadow: 0 16px 34px -14px rgba(0, 0, 0, 0.6); }
+        .al-poster:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
 
-        .al-item {
-          flex: 0 0 calc(20% - 13px); min-width: 160px; scroll-snap-align: start;
-          cursor: pointer;
-        }
-        .al-item-inner {
-          position: relative; overflow: hidden; border-radius: var(--radius-md);
-          border: 2px solid transparent; transition: all 500ms ease;
-        }
-        .al-item-inner img {
-          width: 100%; display: block; aspect-ratio: 3/4; object-fit: cover; transition: all 500ms ease;
-        }
-        .al-overlay {
-          position: absolute; inset: 0;
-          background: rgba(11,109,65,0); display: flex; align-items: center; justify-content: center;
-          transition: all 400ms ease; opacity: 0;
-        }
-        .al-item-inner:hover {
-          border-color: var(--green-light);
-          box-shadow: 0 8px 30px rgba(11,109,65,0.35);
-          transform: translateY(-4px);
-        }
-        .al-item-inner:hover img { transform: scale(1.06); }
-        .al-item-inner:hover .al-overlay { background: rgba(11,109,65,0.55); opacity: 1; }
-
-        /* Lightbox */
-        .al-lightbox {
-          position: fixed; inset: 0; z-index: 9999;
-          background: rgba(0,0,0,0.92); display: flex; align-items: center; justify-content: center;
-          animation: alFadeIn 0.3s ease;
-        }
-        @keyframes alFadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .al-lb-img { max-width: 85vw; max-height: 85vh; border-radius: var(--radius-lg); object-fit: contain; }
-        .al-lb-close {
-          position: absolute; top: 20px; right: 20px;
-          background: rgba(255,255,255,0.1); border: none; border-radius: 50%;
-          width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;
-          cursor: pointer; transition: background 0.2s;
-        }
-        .al-lb-close:hover { background: rgba(255,255,255,0.25); }
-        .al-lb-nav {
-          position: absolute; top: 50%; transform: translateY(-50%);
-          background: rgba(255,255,255,0.1); border: none; border-radius: 50%;
-          width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;
-          cursor: pointer; transition: background 0.2s;
-        }
-        .al-lb-nav:hover { background: var(--green); }
-        .al-lb-prev { left: 20px; }
-        .al-lb-next { right: 20px; }
-
-        @media (max-width: 1024px) { .al-item { flex: 0 0 calc(25% - 12px); } }
-        @media (max-width: 768px) {
-          .al-item { flex: 0 0 calc(33.333% - 11px); min-width: 130px; }
-          .al-section { padding: 50px 0 40px; }
+        @media (max-width: 640px) {
+          .al-section { padding: 56px 0; }
+          .al-rule { width: 40px; }
+          .al-title-row { gap: 14px; }
+          .al-poster { width: 260px; height: 160px; }
         }
       `}</style>
     </section>

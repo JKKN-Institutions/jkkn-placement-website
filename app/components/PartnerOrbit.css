@@ -1,0 +1,78 @@
+/* ===== Our Partners: recruiter logos orbiting the JKKN mark ===== */
+.partner-orbit {
+  --orbit: min(560px, calc(100vw - 32px));
+  --logo: calc(var(--orbit) * 0.14);
+  position: relative;
+  width: var(--orbit);
+  aspect-ratio: 1;
+  margin: 0 auto;
+}
+.partner-orbit-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(var(--orbit) * var(--r) * 2);
+  aspect-ratio: 1;
+  margin: calc(var(--orbit) * var(--r) * -1) 0 0 calc(var(--orbit) * var(--r) * -1);
+  border: 1.5px dashed rgba(11, 109, 65, 0.25);
+  border-radius: 50%;
+  animation: orbit-spin var(--spin) linear infinite;
+}
+.partner-orbit-ring.is-reverse { animation-direction: reverse; }
+.partner-orbit-item {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--logo);
+  height: var(--logo);
+  margin: calc(var(--logo) / -2) 0 0 calc(var(--logo) / -2);
+  transform: rotate(var(--a)) translateX(calc(var(--orbit) * var(--r))) rotate(calc(var(--a) * -1));
+}
+/* Counter-spin at the ring's speed so each logo stays upright */
+.partner-orbit-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 11%;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  box-shadow: 0 8px 20px -10px rgba(3, 40, 22, 0.3);
+  animation: orbit-spin var(--spin) linear infinite reverse;
+}
+.partner-orbit-ring.is-reverse .partner-orbit-logo { animation-direction: normal; }
+.partner-orbit-logo img,
+.partner-orbit-center img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+.partner-orbit-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(var(--orbit) * 0.22);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3.5%;
+  background: #fff;
+  border: 2px solid var(--green);
+  border-radius: 50%;
+  box-shadow: 0 0 0 10px rgba(11, 109, 65, 0.08);
+}
+.partner-orbit:hover .partner-orbit-ring,
+.partner-orbit:hover .partner-orbit-logo { animation-play-state: paused; }
+
+@keyframes orbit-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .partner-orbit-ring,
+  .partner-orbit-logo { animation: none; }
+}

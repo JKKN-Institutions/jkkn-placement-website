@@ -1,6 +1,11 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
+import Image from "next/image";
+import { BookOpen, Cpu, HeartPulse, Microscope, Pill, Smile } from "lucide-react";
+
+const CMS =
+  "https://pmqodbfhsejbvfbmsfeq.supabase.co/storage/v1/object/public/cms-media/general/";
 
 const institutions = [
   {
@@ -9,9 +14,8 @@ const institutions = [
     slug: "dental",
     description:
       "At JKKN Dental College & Hospital, we are dedicated to providing our students with the highest quality education in dental surgery.",
-    image:
-      "https://placements.jkkn.ac.in/wp-content/themes/placements/assets/img/services/service-5.png",
-    icon: "https://placements.jkkn.ac.in/wp-content/themes/placements/assets/img/services/service-icon-1.png",
+    image: CMS + "3848aa24-155a-4759-afc2-17987d647e8b.png",
+    icon: Smile,
     href: "/placements/dental",
   },
   {
@@ -20,9 +24,10 @@ const institutions = [
     slug: "pharmacy",
     description:
       "J.K.K.Nattraja College of Pharmacy has been ranked among India's TOP 50 Pharmacy Colleges with cutting-edge labs and industry-driven curriculum.",
-    image:
-      "https://placements.jkkn.ac.in/wp-content/themes/placements/assets/img/services/service-9.png",
-    icon: "https://placements.jkkn.ac.in/wp-content/themes/placements/assets/img/services/service-icon-3.png",
+    image: CMS + "babdddef-4ba7-4caa-acf2-eda9b4be0199.jpg",
+    // the source photo has a white band above the building
+    imageClass: "scale-[1.35] origin-bottom",
+    icon: Pill,
     href: "/placements/pharmacy",
   },
   {
@@ -31,9 +36,8 @@ const institutions = [
     slug: "nursing",
     description:
       "Join JKKN College of Nursing to receive comprehensive nursing education and contribute to the healthcare field.",
-    image:
-      "https://placements.jkkn.ac.in/wp-content/themes/placements/assets/img/services/service-8.png",
-    icon: "https://placements.jkkn.ac.in/wp-content/themes/placements/assets/img/services/service-icon-4.png",
+    image: CMS + "f229bf34-b6d0-4435-af52-3479b4ff22e2.webp",
+    icon: HeartPulse,
     href: "/placements/nursing",
   },
   {
@@ -42,9 +46,8 @@ const institutions = [
     slug: "allied-health",
     description:
       "At JKKN Allied Health Science College, we strive to provide exceptional education and training in allied health sciences.",
-    image:
-      "https://placements.jkkn.ac.in/wp-content/themes/placements/assets/img/services/service-10.png",
-    icon: "https://placements.jkkn.ac.in/wp-content/themes/placements/assets/img/services/service-icon-2.png",
+    image: CMS + "0a7ec366-6d23-4745-a201-dcd771b9f47d.jpg",
+    icon: Microscope,
     href: "/placements/allied-health",
   },
   {
@@ -53,9 +56,8 @@ const institutions = [
     slug: "engineering",
     description:
       "JKKN College of Engineering is a leading educational institution with a practical learning approach and highly qualified faculty.",
-    image:
-      "https://placements.jkkn.ac.in/wp-content/themes/placements/assets/img/services/service-6.png",
-    icon: "https://placements.jkkn.ac.in/wp-content/themes/placements/assets/img/services/service-icon-2.png",
+    image: CMS + "f81d3b5b-5d88-4350-a779-e5487830fdbd.JPG",
+    icon: Cpu,
     href: "/placements/engineering",
   },
   {
@@ -64,9 +66,8 @@ const institutions = [
     slug: "arts-science",
     description:
       "JKKN College of Arts and Science is an outstanding institution with exceptional faculty, diverse academic programs, and extracurricular activities.",
-    image:
-      "https://placements.jkkn.ac.in/wp-content/themes/placements/assets/img/services/service-7.png",
-    icon: "https://placements.jkkn.ac.in/wp-content/themes/placements/assets/img/services/service-icon-1.png",
+    image: CMS + "af856eac-ce3b-4437-9562-203201b209d5.jpg",
+    icon: BookOpen,
     href: "/placements/arts-science",
   },
 ];
@@ -136,10 +137,12 @@ export default function InstitutionsList() {
             <a key={inst.slug} href={inst.href} className="svc-block">
               <div className="svc-block-inner">
                 <div className="svc-block-image">
-                  <img src={inst.image} alt={inst.name} loading="lazy" />
+                  <div className="svc-photo">
+                    <Image src={inst.image} alt={inst.name} fill sizes="(max-width: 640px) 90vw, 400px" className={`object-cover ${"imageClass" in inst ? inst.imageClass : ""}`} />
+                  </div>
                   <div className="svc-block-content">
                     <span className="svc-icon">
-                      <img src={inst.icon} alt="" />
+                      <inst.icon aria-hidden="true" />
                     </span>
                     {inst.shortLabel}
                     <span className="svc-arrow">
@@ -150,7 +153,7 @@ export default function InstitutionsList() {
                   </div>
                   <div className="svc-block-overlay">
                     <span className="svc-overlay-icon">
-                      <img src={inst.icon} alt="" />
+                      <inst.icon aria-hidden="true" />
                     </span>
                     <h5>{inst.name}</h5>
                     <div className="svc-text">{inst.description}</div>
@@ -210,9 +213,7 @@ export default function InstitutionsList() {
           position: relative; overflow: hidden; border-radius: var(--radius-lg);
         }
         .svc-block-image { position: relative; }
-        .svc-block-image > img {
-          width: 100%; display: block; aspect-ratio: 4/3; object-fit: cover;
-        }
+        .svc-photo { position: relative; width: 100%; aspect-ratio: 4/3; background: var(--green-darker); }
         .svc-block-content {
           position: absolute; left: 0; right: 0; bottom: 0;
           font-size: 13px; color: #fff; font-weight: 600;
@@ -228,7 +229,7 @@ export default function InstitutionsList() {
           display: flex; align-items: center; justify-content: center;
           background: var(--green);
         }
-        .svc-icon img { width: 22px; height: 22px; filter: brightness(0) invert(1); }
+        .svc-icon svg { width: 22px; height: 22px; color: #fff; }
         .svc-arrow {
           position: absolute; right: 18px; top: 50%; transform: translateY(-50%);
         }
@@ -247,7 +248,7 @@ export default function InstitutionsList() {
           display: inline-flex; align-items: center; justify-content: center;
           background-color: rgba(0,0,0,0.13); border-radius: var(--radius-sm); margin-bottom: 12px;
         }
-        .svc-overlay-icon img { width: 20px; height: 20px; filter: brightness(0) invert(1); }
+        .svc-overlay-icon svg { width: 20px; height: 20px; color: #fff; }
         .svc-block-overlay h5 {
           font-weight: 600; font-size: 0.95rem; color: #fff;
           margin-bottom: 6px; line-height: 1.3;

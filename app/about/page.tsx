@@ -14,7 +14,7 @@ export default function AboutPage() {
   return (
     <>
       <Navbar />
-      <main style={{ paddingTop: 112 }}>
+      <main style={{ paddingTop: "var(--nav-h)" }}>
         <AboutPlacement />
         <Faculty />
       </main>

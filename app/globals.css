@@ -1,17 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  --background: #F9F7F2;
+  --background: #fbfbee;
   --foreground: #111827;
   --green: #0b6d41;
   --green-light: #0f8f56;
-  --green-dark: #03311c;
+  --green-dark: #032816;
   --green-darker: #085032;
-  --gold: #7db247;
-  --gold-bright: #7db247;
-  --cream: #F9F7F2;
+  --gold: #ffde59;
+  --gold-bright: #ffde59;
+  --cream: #fbfbee;
   --cream-dark: #f0f7f2;
-  --dark: #03311c;
+  --dark: #032816;
   --body-text: #4B5563;
   --heading: #111827;
 
@@ -21,7 +21,7 @@
   --brand-dark: var(--green-dark);
   --brand-glow: rgba(11, 109, 65, 0.1);
   --accent: var(--gold);
-  --accent-light: #65a667;
+  --accent-light: #e6c64d;
   --success: #3EB75E;
   --text-primary: #111827;
   --text-secondary: #4B5563;
@@ -46,6 +46,7 @@
   --radius-xl: 20px;
   --radius-full: 9999px;
   --max-w: 1200px;
+  --nav-h: 73px; /* fixed header height (Navbar.tsx) incl. border */
   --transition: all 0.3s ease;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -82,7 +83,7 @@
   --color-field-deep: var(--report-field-deep);
   --color-tint: var(--report-tint);
   --color-accent-yellow: var(--report-accent);
-  --font-sans: "Poppins", system-ui, sans-serif;
+  --font-sans: var(--font-poppins), "Poppins", system-ui, sans-serif;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -140,12 +141,12 @@ html {
   border-color: rgba(255,255,255,0.5);
 }
 .btn-accent {
-  background: var(--accent); color: #fff;
-  box-shadow: 0 4px 14px rgba(125,178,71,0.3);
+  background: var(--accent); color: #032816;
+  box-shadow: 0 4px 14px rgba(255,222,89,0.3);
 }
 .btn-accent:hover {
-  background: #65a667; color: #fff; transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(125,178,71,0.35);
+  background: #e6c64d; color: #032816; transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255,222,89,0.35);
 }
 .btn-card {
   width: 100%; background: var(--brand-glow); color: var(--brand);
@@ -259,10 +260,6 @@ html {
 
 /* ===== Responsive Utilities ===== */
 @media (max-width: 1024px) {
-  .hero-grid { grid-template-columns: 1fr !important; text-align: center; padding: 100px 24px 60px !important; }
-  .hero-tagline { margin: 0 auto 32px !important; }
-  .hero-actions { justify-content: center; }
-  .hero-visual { max-width: 480px; margin: 32px auto 0; }
   .colleges-grid { grid-template-columns: repeat(2, 1fr) !important; }
   .process-grid { grid-template-columns: repeat(3, 1fr) !important; }
   .process-grid::before { display: none !important; }
@@ -288,13 +285,37 @@ html {
 }
 
 @media (max-width: 480px) {
-  .hero-grid { padding: 80px 16px 48px !important; }
-  .hero-visual { gap: 10px !important; }
   .stats-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
   .process-grid { grid-template-columns: 1fr !important; max-width: 280px; margin: 0 auto; }
   .recruiters-grid { grid-template-columns: repeat(2, 1fr) !important; }
-  .hero-actions { flex-direction: column; width: 100%; }
-  .hero-actions .btn { width: 100%; }
   .cta-actions { flex-direction: column; align-items: center; }
   .cta-actions .btn { width: 100%; max-width: 320px; }
+}
+
+@media (min-width: 1024px) {
+  :root { --nav-h: 89px; }
+}
+
+/* ===== Hero: Placement Day photo opens like the stage curtains, once ===== */
+.hero-stage::before,
+.hero-stage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: var(--gold);
+  animation: hero-curtain 1s var(--ease-out) 0.15s both;
+  pointer-events: none;
+}
+.hero-stage::before { right: 50%; transform-origin: left center; }
+.hero-stage::after { left: 50%; transform-origin: right center; }
+
+@keyframes hero-curtain {
+  from { transform: scaleX(1); }
+  to { transform: scaleX(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-stage::before,
+  .hero-stage::after { display: none; }
 }

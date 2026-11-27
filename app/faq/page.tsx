@@ -13,7 +13,7 @@ export default function FAQPage() {
   return (
     <>
       <Navbar />
-      <main style={{ paddingTop: 112 }}>
+      <main style={{ paddingTop: "var(--nav-h)" }}>
         <FAQ />
       </main>
       <Footer />

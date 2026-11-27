@@ -947,7 +947,7 @@ export default function OnCampusDrivesContent() {
   return (
     <>
       <Navbar />
-      <main style={{ paddingTop: "calc(40px + 80px)" }}>
+      <main style={{ paddingTop: "var(--nav-h)" }}>
         {view === "listing" ? (
           <>
             {/* Hero */}

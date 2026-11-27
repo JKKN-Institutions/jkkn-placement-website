@@ -38,8 +38,8 @@ export default function GoldenHourTraining() {
           {/* Content */}
           <div>
             <div className="mb-4 flex items-center gap-2">
-              <Clock className="h-5 w-5 text-gold" />
-              <p className="text-sm font-semibold uppercase tracking-wider text-gold">
+              <Clock className="h-5 w-5 text-green" />
+              <p className="text-sm font-semibold uppercase tracking-wider text-green">
                 Training Program
               </p>
             </div>

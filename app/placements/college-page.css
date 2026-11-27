@@ -1,15 +1,15 @@
 /* ===== College Page (shared) — Green Theme (matches main site) ===== */
 .cp-page {
-  --primary: #03311c;
+  --primary: #032816;
   --primary-light: #085032;
   --brand: #0b6d41;
-  --brand-dark: #03311c;
+  --brand-dark: #032816;
   --brand-light: #0f8f56;
   --brand-glow: rgba(11, 109, 65, 0.1);
-  --accent: #7db247;
-  --accent-light: #65a667;
-  --amber: #7db247;
-  --amber-light: #65a667;
+  --accent: #ffde59;
+  --accent-light: #e6c64d;
+  --amber: #ffde59;
+  --amber-light: #e6c64d;
   --text-primary: #111827;
   --text-secondary: #4B5563;
   --text-tertiary: #6b7280;
@@ -812,11 +812,11 @@
 }
 .cp-page .btn-accent {
   background: var(--accent);
-  box-shadow: 0 4px 14px rgba(125,178,71,0.3);
+  box-shadow: 0 4px 14px rgba(255,222,89,0.3);
 }
 .cp-page .btn-accent:hover {
-  background: #b08d47;
-  box-shadow: 0 8px 20px rgba(125,178,71,0.35);
+  background: #e6c64d;
+  box-shadow: 0 8px 20px rgba(255,222,89,0.35);
 }
 .cp-page .section-label {
   background: var(--brand-glow);

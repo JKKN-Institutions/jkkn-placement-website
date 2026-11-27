@@ -121,7 +121,7 @@ const sectors = [
 const testimonials = [
   { initials: "JD", name: "Jae Divya S", role: "B.Tech IT \u2014 Rinex Technologies", color: "var(--green)", quote: "My internship at Rinex Technologies gave me real-world software development experience. The placement cell\u2019s guidance in resume building and interview preparation was invaluable." },
   { initials: "BD", name: "Bharani Dharan M", role: "B.Com CA \u2014 Sakthi Auto Components", color: "var(--green-light)", quote: "The industry exposure program connected me with Sakthi Auto where I learned practical business operations. This internship directly led to my full-time offer." },
-  { initials: "AM", name: "Anitha Murugan", role: "B.Sc Nursing \u2014 NHS UK", color: "var(--gold)", quote: "JKKN\u2019s international internship pathway helped me secure a position at NHS UK. The clinical training at the attached 500-bed hospital prepared me for global healthcare standards." },
+  { initials: "AM", name: "Anitha Murugan", role: "B.Sc Nursing \u2014 NHS UK", color: "var(--green-darker)", quote: "JKKN\u2019s international internship pathway helped me secure a position at NHS UK. The clinical training at the attached 500-bed hospital prepared me for global healthcare standards." },
 ];
 
 const faqs = [
@@ -149,7 +149,7 @@ export default function InternshipsContent() {
   return (
     <>
       <Navbar />
-      <main style={{ paddingTop: "calc(40px + 80px)" }}>
+      <main style={{ paddingTop: "var(--nav-h)" }}>
 
         {/* ===== HERO ===== */}
         <section className="itp-hero">
@@ -182,7 +182,7 @@ export default function InternshipsContent() {
               <div className="itp-stat"><div className="itp-stat-val">500+</div><div className="itp-stat-label">Partner Companies</div></div>
               <div className="itp-stat"><div className="itp-stat-val" style={{ color: "var(--green)" }}>1,200+</div><div className="itp-stat-label">Annual Interns Placed</div></div>
               <div className="itp-stat"><div className="itp-stat-val" style={{ color: "var(--green-light)" }}>7</div><div className="itp-stat-label">Colleges Covered</div></div>
-              <div className="itp-stat"><div className="itp-stat-val" style={{ color: "var(--gold)" }}>40%+</div><div className="itp-stat-label">PPO Conversion Rate</div></div>
+              <div className="itp-stat"><div className="itp-stat-val" style={{ color: "var(--green-dark)" }}>40%+</div><div className="itp-stat-label">PPO Conversion Rate</div></div>
             </div>
           </div>
         </section>
@@ -554,7 +554,7 @@ export default function InternshipsContent() {
         .itp-icon-box { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
         .itp-icon-green { background: rgba(11,109,65,0.1); color: var(--green); }
         .itp-icon-light { background: rgba(15,143,86,0.1); color: var(--green-light); }
-        .itp-icon-gold { background: rgba(125,178,71,0.15); color: var(--gold); }
+        .itp-icon-gold { background: rgba(255,222,89,0.35); color: var(--green-dark); }
         .itp-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
         .itp-list li { display: flex; align-items: start; gap: 8px; font-size: 0.85rem; color: var(--text-secondary); }
         .itp-arrow { color: var(--green); margin-top: 2px; flex-shrink: 0; }

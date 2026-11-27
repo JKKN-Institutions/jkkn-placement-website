@@ -1,6 +1,8 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { ChevronLeft, ChevronRight, MessageSquareQuote, Quote } from "lucide-react";
+import SectionHeading from "./SectionHeading";
 
 const testimonials = [
   {
@@ -41,8 +43,14 @@ const testimonials = [
   },
 ];
 
+const arrow =
+  "flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-full bg-white text-green shadow-[0_10px_26px_-12px_rgba(3,40,22,0.5)] ring-1 ring-black/5 transition-colors duration-200 hover:bg-green hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green disabled:cursor-default disabled:opacity-40 disabled:hover:bg-white disabled:hover:text-green";
+
 export default function Testimonials() {
   const sectionRef = useRef<HTMLElement>(null);
+  const trackRef = useRef<HTMLUListElement>(null);
+  const [atStart, setAtStart] = useState(true);
+  const [atEnd, setAtEnd] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -57,70 +65,116 @@ export default function Testimonials() {
     return () => observer.disconnect();
   }, []);
 
+  // Keep the arrows in step with the scroll position (also covers swipe and keyboard scrolling).
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    const update = () => {
+      setAtStart(track.scrollLeft <= 4);
+      setAtEnd(track.scrollLeft + track.clientWidth >= track.scrollWidth - 4);
+    };
+    track.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    const frame = requestAnimationFrame(update);
+    return () => {
+      track.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+      cancelAnimationFrame(frame);
+    };
+  }, []);
+
+  const slide = useCallback((direction: 1 | -1) => {
+    const track = trackRef.current;
+    const card = track?.querySelector<HTMLElement>("li");
+    if (!track || !card) return;
+    const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    track.scrollBy({ left: direction * (card.offsetWidth + gap), behavior: reduce ? "auto" : "smooth" });
+  }, []);
+
   return (
-    <section ref={sectionRef} id="testimonials" style={{ padding: "80px 0" }}>
-      <div style={{ maxWidth: "var(--max-w)", margin: "0 auto", padding: "0 24px" }}>
-        <div className="section-header reveal">
-          <div className="section-label">Testimonials</div>
-          <h2
-            className="font-extrabold"
-            style={{
-              fontSize: "clamp(1.75rem, 4vw, 2.5rem)",
-              color: "var(--text-primary)",
-              lineHeight: 1.2,
-              letterSpacing: "-0.02em",
-              marginBottom: 16,
-            }}
+    <section
+      ref={sectionRef}
+      id="testimonials"
+      className="py-16 lg:py-20"
+      style={{ scrollMarginTop: "var(--nav-h)" }}
+    >
+      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+        <SectionHeading
+          label="Testimonials"
+          icon={MessageSquareQuote}
+          title="What Our Placed Students Say"
+          lead="Real experiences from students who launched their careers through JKKN placements"
+        />
+
+        {/* Carousel: three cards on desktop, two on tablets, one on phones */}
+        <div className="reveal flex items-center gap-3 lg:gap-4">
+          <button
+            type="button"
+            className={`${arrow} hidden sm:flex`}
+            onClick={() => slide(-1)}
+            disabled={atStart}
+            aria-label="Previous testimonials"
           >
-            What Our Placed Students Say
-          </h2>
-          <p style={{ fontSize: "1.1rem", color: "var(--text-secondary)", maxWidth: 600, margin: "0 auto", lineHeight: 1.6 }}>
-            Real experiences from students who launched their careers through JKKN placements
-          </p>
+            <ChevronLeft className="h-5 w-5" aria-hidden="true" />
+          </button>
+
+          <ul
+            ref={trackRef}
+            tabIndex={0}
+            aria-label="Testimonials"
+            className="testimonial-track m-0 flex min-w-0 flex-1 list-none snap-x snap-mandatory gap-5 overflow-x-auto px-1 py-6 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green lg:gap-6"
+            style={{ scrollbarWidth: "none" }}
+          >
+            {testimonials.map((t) => (
+              <li
+                key={t.name}
+                className="flex shrink-0 basis-full snap-start gap-4 rounded-2xl bg-white p-5 shadow-[0_14px_34px_-20px_rgba(3,40,22,0.4)] ring-1 ring-black/5 sm:gap-5 sm:p-6 md:basis-[calc((100%-1.25rem)/2)] xl:basis-[calc((100%-3rem)/3)]"
+              >
+                <span
+                  className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full text-lg font-bold text-green sm:h-20 sm:w-20 sm:text-xl"
+                  style={{ background: "#d4f1e4", boxShadow: "0 0 0 4px #fff, 0 0 0 6px #d4f1e4" }}
+                  aria-hidden="true"
+                >
+                  {t.initials}
+                </span>
+                <figure className="m-0 flex min-w-0 flex-1 flex-col">
+                  <Quote className="mb-2 h-6 w-6 text-green" fill="currentColor" strokeWidth={0} aria-hidden="true" />
+                  <blockquote className="mb-4 text-[14.5px] leading-relaxed text-slate-700">{t.text}</blockquote>
+                  <figcaption className="mt-auto">
+                    <span className="block text-[15px] font-bold" style={{ color: "var(--green-dark)" }}>
+                      {t.name}
+                    </span>
+                    <span className="text-[13px] text-slate-600">{t.role}</span>
+                  </figcaption>
+                </figure>
+              </li>
+            ))}
+          </ul>
+
+          <button
+            type="button"
+            className={`${arrow} hidden sm:flex`}
+            onClick={() => slide(1)}
+            disabled={atEnd}
+            aria-label="Next testimonials"
+          >
+            <ChevronRight className="h-5 w-5" aria-hidden="true" />
+          </button>
         </div>
 
-        <div
-          className="testimonials-grid"
-          style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }}
-        >
-          {testimonials.map((t, i) => (
-            <article
-              key={i}
-              className={`reveal card-hover-md ${i % 3 === 1 ? "reveal-delay-1" : i % 3 === 2 ? "reveal-delay-2" : ""}`}
-              style={{
-                background: "var(--surface-0)",
-                border: "1px solid var(--border)",
-                borderRadius: "var(--radius-xl)",
-                padding: 28,
-              }}
-            >
-              <div style={{ color: "var(--accent)", fontSize: "0.9rem", marginBottom: 16, letterSpacing: 2 }} aria-hidden="true">
-                {"\u2605\u2605\u2605\u2605\u2605"}
-              </div>
-              <blockquote style={{ fontSize: "0.92rem", color: "var(--text-secondary)", lineHeight: 1.7, marginBottom: 20, fontStyle: "italic" }}>
-                {t.text}
-              </blockquote>
-              <div
-                className="flex items-center gap-3"
-                style={{ paddingTop: 16, borderTop: "1px solid var(--border-light)" }}
-              >
-                <img
-                  src={`https://placehold.co/44x44/e2e8f0/334155?text=${t.initials}`}
-                  alt={`Photo of ${t.name}`}
-                  width={44}
-                  height={44}
-                  style={{ borderRadius: "50%", objectFit: "cover", border: "2px solid var(--surface-2)" }}
-                  loading="lazy"
-                />
-                <div>
-                  <span style={{ fontWeight: 700, fontSize: "0.88rem", color: "var(--text-primary)", display: "block" }}>{t.name}</span>
-                  <span style={{ fontSize: "0.78rem", color: "var(--text-tertiary)" }}>{t.role}</span>
-                </div>
-              </div>
-            </article>
-          ))}
+        {/* On phones the arrows sit under the cards */}
+        <div className="mt-2 flex justify-center gap-3 sm:hidden">
+          <button type="button" className={arrow} onClick={() => slide(-1)} disabled={atStart} aria-label="Previous testimonial">
+            <ChevronLeft className="h-5 w-5" aria-hidden="true" />
+          </button>
+          <button type="button" className={arrow} onClick={() => slide(1)} disabled={atEnd} aria-label="Next testimonial">
+            <ChevronRight className="h-5 w-5" aria-hidden="true" />
+          </button>
         </div>
       </div>
+
+      <style>{`.testimonial-track::-webkit-scrollbar { display: none; }`}</style>
     </section>
   );
 }

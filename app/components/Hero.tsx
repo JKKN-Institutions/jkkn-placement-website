@@ -1,148 +1,103 @@
-"use client";
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight, GraduationCap } from "lucide-react";
+import StatsBar from "./StatsBar";
 
-import { useEffect, useRef } from "react";
+const MINT = "#d4f1e4"; // jkkn.ac.in --brand-primary-lighter
 
 export default function Hero() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    const section = sectionRef.current;
-    if (section) {
-      section.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <section
-      ref={sectionRef}
-      className="relative flex min-h-screen items-center overflow-hidden"
-      style={{ background: "var(--green-dark)" }}
+      aria-labelledby="hero-title"
+      className="pb-10 lg:pb-12"
+      style={{ background: "var(--background)" }}
     >
-      {/* Gradient overlays */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(ellipse 80% 60% at 70% 40%, rgba(11,109,65,0.15) 0%, transparent 70%), radial-gradient(ellipse 60% 50% at 20% 80%, rgba(8,80,50,0.15) 0%, transparent 60%)",
-        }}
-      />
-
-      <div
-        className="hero-grid relative z-[2] mx-auto grid w-full items-center gap-12"
-        style={{
-          maxWidth: "var(--max-w)",
-          gridTemplateColumns: "1fr 1fr",
-          padding: "120px 24px 80px",
-        }}
-      >
-        {/* Left: Text */}
-        <div className="reveal">
-          <div
-            className="mb-5 inline-flex items-center gap-2 rounded-full text-sm font-semibold"
-            style={{
-              background: "rgba(11,109,65,0.2)",
-              color: "var(--green-light)",
-              padding: "8px 18px",
-              border: "1px solid rgba(11,109,65,0.25)",
-              backdropFilter: "blur(8px)",
-              letterSpacing: "0.3px",
-              fontSize: "0.82rem",
-            }}
-          >
-            <span
-              className="rounded-full"
+      {/* Intro: runs to the top of the page behind the header; copy left, photo bleeding off the right edge on desktop */}
+      <div className="relative isolate overflow-hidden">
+        <div className="relative z-10 mx-auto flex max-w-[1400px] items-center px-4 pt-[calc(var(--nav-h)+2rem)] pb-8 sm:px-6 lg:min-h-[clamp(580px,calc(100svh-76px),920px)] lg:px-8 lg:pb-26">
+          <div className="lg:max-w-[46%]">
+            <p
+              className="mb-6 inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-green"
+              style={{ background: MINT }}
+            >
+              <GraduationCap className="h-4 w-4" aria-hidden="true" />
+              JKKN Training &amp; Placement Cell
+            </p>
+            <h1
+              id="hero-title"
+              className="mb-6 font-bold"
               style={{
-                width: 8,
-                height: 8,
-                background: "var(--gold)",
-                animation: "pulse-dot 2s infinite",
+                color: "var(--green-dark)",
+                fontSize: "clamp(2.25rem, 5vw, 4.25rem)",
+                lineHeight: 1.05,
+                letterSpacing: "-0.03em",
               }}
-            />
-            JKKN Training &amp; Placement Cell
-          </div>
-
-          <h1
-            className="mb-5 font-extrabold text-white"
-            style={{
-              fontSize: "clamp(2.2rem, 5vw, 3.5rem)",
-              lineHeight: 1.15,
-              letterSpacing: "-0.03em",
-            }}
-          >
-            Empowering Careers Across{" "}
-            <span style={{ color: "var(--green-light)" }}>6 Colleges</span>
-          </h1>
-
-          <p
-            className="hero-tagline mb-8"
-            style={{
-              fontSize: "clamp(1rem, 2vw, 1.15rem)",
-              color: "rgba(255,255,255,0.7)",
-              lineHeight: 1.7,
-              maxWidth: 520,
-            }}
-          >
-            JKKN Institutions connects over 1,200 students annually with 500+
-            leading recruiters across healthcare, technology, pharmaceutical, and
-            core engineering sectors.
-          </p>
-
-          <div className="hero-actions flex flex-wrap gap-3">
-            <a href="#colleges" className="btn btn-primary">
-              Explore Placements
-            </a>
-            <a href="#contact" className="btn btn-outline">
-              Contact Placement Cell
-            </a>
+            >
+              <span className="block">Empowering </span>
+              <span className="block">Careers Across </span>
+              <span className="block text-green">6 Colleges</span>
+            </h1>
+            <p
+              className="mb-8 text-slate-700"
+              style={{ fontSize: "clamp(1rem, 1.25vw, 1.125rem)", lineHeight: 1.7, maxWidth: "34rem" }}
+            >
+              JKKN Institutions connects over 1,200 students annually with 500+ leading recruiters
+              across healthcare, technology, pharmaceutical, and core engineering sectors.
+            </p>
+            <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <Link
+                href="#colleges"
+                className="group inline-flex min-h-12 cursor-pointer items-center justify-center gap-2 rounded-full bg-green px-7 text-[15px] font-semibold text-white shadow-[0_8px_20px_-8px_rgba(11,109,65,0.6)] transition-colors duration-200 hover:bg-[#085032] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green"
+              >
+                Explore Placements
+                <ArrowRight
+                  className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1 motion-reduce:transition-none"
+                  aria-hidden="true"
+                />
+              </Link>
+              <Link
+                href="/contact"
+                className="inline-flex min-h-12 cursor-pointer items-center justify-center rounded-full border-[1.5px] border-green bg-white px-7 text-[15px] font-semibold text-green transition-colors duration-200 hover:bg-green hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green"
+              >
+                Contact Placement Cell
+              </Link>
+            </div>
           </div>
         </div>
 
-        {/* Right: Image */}
-        <div
-          className="hero-visual reveal reveal-delay-2"
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            overflow: "hidden",
-            borderRadius: "var(--radius-xl, 16px)",
-            maxWidth: 500,
-            margin: "0 auto",
-          }}
-        >
-          <img
-            src="/placement-event.png"
-            alt="JKKN Placement Event"
+        {/* Photo (AI-generated, cropped from the design mockup): a rounded card under the copy on small screens, a full-height bleed on desktop */}
+        <figure className="relative mx-4 mb-10 aspect-[1184/704] overflow-hidden rounded-2xl bg-slate-200 sm:mx-6 lg:absolute lg:inset-y-0 lg:right-0 lg:z-0 lg:m-0 lg:aspect-auto lg:w-[60%] lg:rounded-none">
+          <Image
+            src="/hero-students.jpg"
+            alt="Four students gathered around a laptop on a college campus (illustrative image)"
+            fill
+            priority
+            sizes="(max-width: 1024px) 100vw, 60vw"
+            className="object-cover"
+          />
+          {/* Left edge dissolves into the page so the copy stays readable */}
+          <div
+            className="absolute inset-0 hidden lg:block"
+            aria-hidden="true"
             style={{
-              width: "110%",
-              maxWidth: "none",
-              marginTop: -40,
-              marginRight: -30,
-              objectFit: "cover",
+              background:
+                "linear-gradient(90deg, #fbfbee 0%, rgba(251,251,238,0.9) 10%, rgba(251,251,238,0.45) 24%, rgba(251,251,238,0) 40%), linear-gradient(180deg, rgba(251,251,238,0.8) 0%, rgba(251,251,238,0.35) 12%, rgba(251,251,238,0) 24%)",
             }}
           />
-        </div>
+          {/* Brand curve in the bottom-right corner */}
+          <svg
+            className="absolute bottom-0 right-0 hidden h-[58%] w-auto lg:block"
+            viewBox="0 0 200 300"
+            aria-hidden="true"
+          >
+            <path d="M200 0 C 192 140 122 250 0 300 L 200 300 Z" fill="var(--gold)" />
+            <path d="M200 44 C 196 164 142 262 44 300 L 200 300 Z" fill="var(--green)" />
+          </svg>
+        </figure>
       </div>
 
-      <style>{`
-        @keyframes pulse-dot {
-          0%, 100% { opacity: 1; transform: scale(1); }
-          50% { opacity: 0.5; transform: scale(1.5); }
-        }
-      `}</style>
+      {/* Figures card, overlapping the bottom of the photo on desktop */}
+      <StatsBar />
     </section>
   );
 }

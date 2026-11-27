@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { ArrowRight, Building2 } from "lucide-react";
+import SectionHeading from "./SectionHeading";
 
 const colleges = [
   {
@@ -103,85 +105,75 @@ export default function Colleges() {
     <section
       ref={sectionRef}
       id="colleges"
-      style={{ background: "var(--surface-1)", padding: "80px 0" }}
+      className="py-16 lg:py-20"
+      style={{ background: "var(--cream-dark)", scrollMarginTop: "var(--nav-h)" }}
     >
-      <div style={{ maxWidth: "var(--max-w)", margin: "0 auto", padding: "0 24px" }}>
-        <div className="section-header reveal">
-          <div className="section-label">Our Colleges</div>
-          <h2
-            className="font-extrabold"
-            style={{
-              fontSize: "clamp(1.75rem, 4vw, 2.5rem)",
-              color: "var(--text-primary)",
-              lineHeight: 1.2,
-              letterSpacing: "-0.02em",
-              marginBottom: 16,
-            }}
-          >
-            Placements Across 6 Colleges
-          </h2>
-          <p style={{ fontSize: "1.1rem", color: "var(--text-secondary)", maxWidth: 600, margin: "0 auto", lineHeight: 1.6 }}>
-            Each college has a dedicated placement wing working with industry-specific recruiters
-          </p>
-        </div>
+      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+        <SectionHeading
+          label="Our Colleges"
+          icon={Building2}
+          title="Placements Across 6 Colleges"
+          lead="Each college has a dedicated placement wing working with industry-specific recruiters"
+        />
 
-        <div
-          className="colleges-grid"
-          style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }}
-        >
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3 xl:gap-7">
           {colleges.map((college, i) => (
             <article
-              key={i}
-              className={`reveal card-hover ${i % 3 === 1 ? "reveal-delay-1" : i % 3 === 2 ? "reveal-delay-2" : ""}`}
-              style={{
-                background: "var(--surface-0)",
-                borderRadius: "var(--radius-xl)",
-                border: "1px solid var(--border)",
-                overflow: "hidden",
-                display: "flex",
-                flexDirection: "column",
-              }}
+              key={college.slug}
+              className={`reveal group flex flex-col overflow-hidden rounded-2xl bg-white shadow-[0_18px_44px_-24px_rgba(3,40,22,0.35)] ring-1 ring-black/5 transition-shadow duration-300 hover:shadow-[0_26px_54px_-22px_rgba(3,40,22,0.5)] ${
+                i % 3 === 1 ? "reveal-delay-1" : i % 3 === 2 ? "reveal-delay-2" : ""
+              }`}
             >
-              <img
-                src={college.image}
-                alt={`${college.name} campus`}
-                width={400}
-                height={180}
-                style={{ width: "100%", height: 180, objectFit: "cover" }}
-                loading="lazy"
-              />
-              <div style={{ padding: 24, flex: 1, display: "flex", flexDirection: "column" }}>
-                <h3 style={{ fontSize: "1.05rem", fontWeight: 700, color: "var(--text-primary)", lineHeight: 1.3, marginBottom: 6 }}>
+              <div className="relative h-48 overflow-hidden">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={college.image}
+                  alt={`${college.name} campus`}
+                  width={400}
+                  height={192}
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+                  loading="lazy"
+                />
+                <div
+                  className="absolute inset-x-0 bottom-0 h-2/3"
+                  aria-hidden="true"
+                  style={{ background: "linear-gradient(180deg, rgba(3,40,22,0) 0%, rgba(3,40,22,0.82) 100%)" }}
+                />
+                <h3 className="absolute inset-x-0 bottom-0 px-5 pb-4 text-lg font-bold leading-snug text-white">
                   {college.name}
                 </h3>
-                <p style={{ fontSize: "0.82rem", color: "var(--text-tertiary)", marginBottom: 20, lineHeight: 1.5 }}>
-                  {college.programmes}
-                </p>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginBottom: 20 }}>
-                  {college.metrics.map((m, j) => (
+              </div>
+
+              <div className="flex flex-1 flex-col p-5 sm:p-6">
+                <p className="mb-5 text-[13px] leading-relaxed text-slate-600">{college.programmes}</p>
+
+                <dl className="mb-5 grid grid-cols-2 gap-2.5">
+                  {college.metrics.map((m) => (
                     <div
-                      key={j}
-                      style={{
-                        background: "var(--surface-1)",
-                        borderRadius: "var(--radius-md)",
-                        padding: 12,
-                        textAlign: "center",
-                      }}
+                      key={m.label}
+                      className="flex flex-col-reverse rounded-xl px-3 py-3 text-center"
+                      style={{ background: "var(--cream-dark)" }}
                     >
-                      <span style={{ fontSize: "1.15rem", fontWeight: 800, color: "var(--text-primary)", display: "block" }}>
-                        {m.value}
-                      </span>
-                      <span style={{ fontSize: "0.68rem", color: "var(--text-tertiary)", textTransform: "uppercase", letterSpacing: "0.5px", fontWeight: 500, marginTop: 2 }}>
-                        {m.label}
-                      </span>
+                      <dt className="mt-0.5 text-xs font-medium text-slate-600">{m.label}</dt>
+                      <dd className="text-xl font-bold tabular-nums text-green">{m.value}</dd>
                     </div>
                   ))}
-                </div>
-                <p style={{ fontSize: "0.82rem", color: "var(--text-secondary)", marginBottom: 20, lineHeight: 1.6 }}>
-                  <strong style={{ color: "var(--text-primary)", fontWeight: 600 }}>Top Recruiters:</strong> {college.recruiters}
+                </dl>
+
+                <p className="mb-6 text-[13px] leading-relaxed text-slate-700">
+                  <strong className="font-semibold" style={{ color: "var(--green-dark)" }}>
+                    Top Recruiters:
+                  </strong>{" "}
+                  {college.recruiters}
                 </p>
-                <a href={`/placements/${college.slug}`} className="btn btn-card" style={{ borderRadius: "var(--radius-full)", padding: "12px 20px", fontSize: "0.9rem", marginTop: "auto" }}>
+
+                <a
+                  href={`/placements/${college.slug}`}
+                  aria-label={`View Details: ${college.name}`}
+                  className="mt-auto inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 self-start rounded-full border-[1.5px] border-green px-6 text-sm font-semibold text-green transition-colors duration-200 hover:bg-green hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green"
+                >
                   View Details
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </a>
               </div>
             </article>
